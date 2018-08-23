@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -79,16 +79,17 @@
 
 
 
-<meta name="description" content="星辰墨隐">
+<meta name="description" content="星辰墨隐的博客">
+<meta name="keywords" content="记录学习总结与奇闻轶事">
 <meta property="og:type" content="website">
 <meta property="og:title" content="星辰墨隐">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="星辰墨隐">
-<meta property="og:description" content="星辰墨隐">
-<meta property="og:locale" content="default">
+<meta property="og:description" content="星辰墨隐的博客">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="星辰墨隐">
-<meta name="twitter:description" content="星辰墨隐">
+<meta name="twitter:description" content="星辰墨隐的博客">
 
 
 
@@ -104,7 +105,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -136,7 +137,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -185,7 +186,37 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -195,7 +226,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -251,7 +282,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/20/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2018/08/20/hello-world/" itemprop="url">利用github+Hexo玩转博客————搭建篇</a></h1>
         
 
         <div class="post-meta">
@@ -261,9 +292,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-20T15:17:14+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-20T15:17:14+08:00">
                 2018-08-20
               </time>
             
@@ -274,8 +305,41 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/教程/" itemprop="url" rel="index">
+                    <span itemprop="name">教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/20/hello-world/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/20/hello-world/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -303,15 +367,96 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h2 id="为什么要写博客"><a href="#为什么要写博客" class="headerlink" title="为什么要写博客"></a>为什么要写博客</h2><p>在开始搭建我自己的博客时，我也问过自己这个问题，对我而言，写博客有以下几个理由：</p>
+<ul>
+<li>可以逼迫我持续学习：既然自己搭建了自己特有的博客，就应该为其负责，总要去不断学习，有东西可总结，<br>可写。</li>
+<li>可以积累更多的知识，可以作为自己的移动笔记本，忘掉的知识也能立即查找，复习起来。</li>
+<li>我个人的表达能力较差，坚持的写作可以让提高我把事情讲清楚的能力。</li>
+<li>将反思与总结养成习惯，提高思考能力。</li>
+<li>或许可以找到志同道合的朋友。</li>
+<li><p>自己成长的记录。</p>
+<p>  …………</p>
+</li>
+</ul>
+<p>这里有一份更加详细的<a href="https://zhuanlan.zhihu.com/p/19743861" target="_blank" rel="noopener">答案</a>，我想你总能找到说服自己写博客的理由</p>
+<h2 id="博客要写些什么"><a href="#博客要写些什么" class="headerlink" title="博客要写些什么"></a>博客要写些什么</h2><p>博客没有那么难写，你可以当作是生活的记录，但写就要对的住写本身，一定要是思考后的结果，博客的内容可以是：</p>
+<ul>
+<li>有目的写,务实且追求质量</li>
+<li>承认真实的自己，不装逼也无需讨好读者</li>
+<li>可以记录自己学习，总结的过程</li>
+<li>分享自己的故事，感想和经验</li>
+<li>切记不是不是生活杂记、不是流水账、不是牢骚、不是抱怨、不是心情琐记</li>
+</ul>
+<h1 id="准备阶段"><a href="#准备阶段" class="headerlink" title="准备阶段"></a>准备阶段</h1><h2 id="搭建博客的过程的简单介绍"><a href="#搭建博客的过程的简单介绍" class="headerlink" title="搭建博客的过程的简单介绍"></a>搭建博客的过程的简单介绍</h2><p><img src="http://pdwzob2aa.bkt.clouddn.com/603812-20160423232604913-1510539894.png" alt="搭建博客的思维导图" title="搭建博客的思维导图"></p>
+<ul>
+<li><strong>Hexo</strong>: 是一款基于Node.Js、快速、简洁且高效的博客框架，它使用Markdown解析文章，支持多种主题，在几秒内，即可利用靓丽的主题生成静态网页。它同时也是GitHub上的开源项目,感兴趣的同学可以在<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>官网了解更多。</li>
+<li><p><strong>Node.js</strong>: 是基于V8的引擎，是目前速度最快的Javascript引擎。chrome浏览器就基于V8，同时打开20-30个网页都很流畅。Nodejs标准的web开发框架Express，可以帮助我们迅速建立web站点，比起PHP的开发效率更高，而且学习曲线更低。非常适合小型网站，个性化网站，我们自己的Geek网站！JS是脚本语言，脚本语言需要一个解析器才能运行。对于写在HTML页面里面的JS，浏览器充当了解析器的角色。而对于需要独立运行的JS，NodeJS就是一个解析器。</p>
+</li>
+<li><p><strong>Github</strong>：这里主要用到的是GitHub Pages，可以托管静态网页，举一个简单的例子：你可以创建好username.github.io项目之后，提交一个index.html文件，然后push到GitHub的master分支（也就是普通意义上的主干）。第一次页面生效需要一些时间，大概10分钟左右。生效之后，访问username.github.io就可以看到你上传的页面了。利用Hexo实际就是把生成的网页静态文件部署到Github的形如username.github.io的项目版本库里，通过访问username.github.io或绑定的域名去查看网页</p>
+</li>
+</ul>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h3 id="Node-js安装"><a href="#Node-js安装" class="headerlink" title="Node.js安装"></a>Node.js安装</h3><p> <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Node.js下载地址</a>，下载对应系统的对应版本安装，注意安装Node.js会包含环境变量及npm的安装，安装后，检测Node.js是否安装成功，在命令行中输入 node -v，查看是否出现版本号。<br> <img src="https://pic3.zhimg.com/80/v2-76ea38e9545e606f975781e47933b010_hd.jpg" alt=""></p>
+<h3 id="git安装"><a href="#git安装" class="headerlink" title="git安装"></a>git安装</h3><p> <a href="https://git-scm.com/" target="_blank" rel="noopener">git下载地址</a>，下载对应系统的git安装，设置好安装路径使用默认设置一路next就好。<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013743256916071d599b3aed534aaab22a0db6c4e07fd0000" target="_blank" rel="noopener">git的详细教程</a>，这<br> 里建议大家学习下git，还是很有用的。</p>
+<h3 id="github配置"><a href="#github配置" class="headerlink" title="github配置"></a>github配置</h3><ol>
+<li>github账号注册](<a href="https://github.com/)，注意uesrname不要是中文，最好是小写。" target="_blank" rel="noopener">https://github.com/)，注意uesrname不要是中文，最好是小写。</a></li>
+<li><p>创建Repository用来使用github pages的静态网页托管</p>
+<p> <img src="https://pic2.zhimg.com/80/v2-24577e5f8be7ca0f64a5e97dddec1bcd_hd.jpg" alt=""></p>
+<p> 这里需要注意的是Repository名字应该 username.github.io。比如图中的username就是kkl1210，则Repository name 应该是 kkl1210.github.io 其他的可以选择添加一些描述也可以选择默认什么也不添加 ，点击creat repository。这个Repository将会是你Hexo部署网页静态文件的地方。</p>
+</li>
+<li><p>配置SSH Keys使本地git项目与gitHub联系</p>
+<p> 3.1 开始–所有应用–找到git bash </p>
+<p> <img src="https://pic4.zhimg.com/80/v2-a5d5cddc2761dae6f0c714f8dfa21183_hd.jpg" alt=""></p>
+<p> 3.2 生成新的SSH Key:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;邮件地址@youremail.com&quot;</span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/Users/your_user_directory/.ssh/id_rsa):&lt;回车就好&gt;</span><br></pre></td></tr></table></figure>
+<p> 【提示1】这里的邮箱地址，输入注册 Github 的邮箱地址；</p>
+<p> 【提示2】「-C」的是大写的「C」</p>
+<p> 然后系统会要你输入密码：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty for no passphrase):&lt;设置密码&gt;</span><br><span class="line">Enter same passphrase again:&lt;再次输入密码&gt;</span><br></pre></td></tr></table></figure>
+<p> 在回车中会提示你输入一个密码，这个密码会在你提交项目时使用，如果为空的话提交项目时则不用输入。这个设置是防止别人往你的项目里提交内容。</p>
+<p> 注意：输入密码的时候没有输入痕迹的，不要以为什么也没有输入。</p>
+<p> 最后看到这样的界面，就成功设置ssh key了：</p>
+<p> <img src="https://pic4.zhimg.com/80/v2-a71526ce9aa4e5c7b6e140bcb0237960_hd.jpg" alt=""><br> 3.3 添加SSH Key到GitHub</p>
+<p> 在你的文件夹中找到.ssh的文件夹（Windows的一般在C:\Users\[你的用户名]\.ssh），会有以下文件：</p>
+<p> <img src="https://pic4.zhimg.com/80/v2-1fd297806f4676abf0b23a51e1068af0_hd.jpg" alt=""></p>
+<p> 复制id_rsa.pub(用记事本就可以打开)的内容到你的GitHub上相应的位置。</p>
+<p> 在你的GitHub主页，点击头像后边的倒三角</p>
+<p> <img src="https://pic4.zhimg.com/80/v2-17f75d80fdbd6076b1fe18c8dcbc7914_hd.jpg" alt=""></p>
+<p> <img src="https://pic2.zhimg.com/80/v2-5f9f15cc503f679f97b06f90e2667c57_hd.jpg" alt=""></p>
+<p> Title可以注明是用于什么SSH或那台机子上的，Key部分就是放刚才复制的内容啦 点击Add SSH key</p>
+<p> 3.4 测试SSH。git bash里，输入以下代码（不要修改任何字符）</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p> 会得到以下反馈</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host &apos;GitHub.com (207.97.227.239)&apos; can&apos;t be established.</span><br><span class="line">RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</span><br><span class="line">Are you sure you want to continue connecting (yes/no)</span><br></pre></td></tr></table></figure>
+<p> 输入yes, 回车，接着输入刚刚设置的密码得到以下结果表示成功</p>
+<p> <img src="https://pic4.zhimg.com/80/v2-0a30cfc538b488273c6690ec98b6a9a9_hd.jpg" alt=""></p>
+<p> 恭喜！现在已经可以通过SSH链接到Github，接下来完善一下个人信息</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;your username&quot;//输入注册时的username</span><br><span class="line">$ git config --global user.email  &quot;your email&quot;//填写注册邮箱</span><br></pre></td></tr></table></figure>
+<p> 如遇问题，<a href="https://help.github.com/articles/connecting-to-github-with-ssh/" target="_blank" rel="noopener">常见错误参考</a></p>
+</li>
+</ol>
+<h1 id="搭建阶段"><a href="#搭建阶段" class="headerlink" title="搭建阶段"></a>搭建阶段</h1><h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>建议阅读<a href="https://hexo.io/zh-cn/docs" target="_blank" rel="noopener">Hexo官网</a>详细了解</p>
+<p>Hexo就是我们的个人博客网站的框架， 这里需要自己在电脑常里创建一个文件夹，可以命名为Blog，Hexo框架与以后你自己发布的网页都在这个文件夹中。创建好后，进入文件夹中，按住shift键，右击鼠标点击命令行</p>
+<p><img src="https://pic4.zhimg.com/80/v2-a5450a466c0927c25dff8ad6f1d2046c_hd.jpg" alt=""></p>
+<p>使用npm命令安装Hexo，输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
+<p>这个安装时间较长耐心等待，安装完成后，初始化我们的博客，输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure></p>
+<p>安装依赖包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure></p>
+<p>为了检测我们的网站雏形，分别按顺序输入以下三条命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo new test_my_site   //新建一篇博客</span><br><span class="line"></span><br><span class="line">hexo g   //生成网页</span><br><span class="line"></span><br><span class="line">hexo s    //在本地部署实现预览</span><br></pre></td></tr></table></figure></p>
+<p>这些命令在后面作介绍，完成后，打开浏览器输入地址:localhost:4000，可以本地查看网站</p>
+<p>常用hexo命令命令简写。<a href="https://hexo.io/zh-cn/docs/commands" target="_blank" rel="noopener">更多指令</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">hexo n &quot;我的博客&quot; == hexo new &quot;我的博客&quot; #新建文章</span><br><span class="line"></span><br><span class="line">hexo g == hexo generate #生成</span><br><span class="line"></span><br><span class="line">hexo s == hexo server #启动服务预览</span><br><span class="line"></span><br><span class="line">hexo d == hexo deploy #部署</span><br><span class="line"></span><br><span class="line">hexo server #Hexo会监视文件变动并自动更新，无须重启服务器</span><br><span class="line"></span><br><span class="line">hexo server -p 5000 #更改端口</span><br><span class="line"></span><br><span class="line">hexo server -i 192.168.1.1 #自定义 IP</span><br><span class="line"></span><br><span class="line">hexo clean #清除缓存，若是网页正常情况下可以忽略这条命令</span><br></pre></td></tr></table></figure></p>
+<h2 id="推送网站"><a href="#推送网站" class="headerlink" title="推送网站"></a>推送网站</h2><p>上面只是在本地预览，接下来要做的就是就是推送网站，也就是发布网站，让我们的网站可以被更多的人访问。在设置之前，需要解释一个概念，在blog根目录里的_config.yml文件称为站点配置文件，如下图</p>
+<p><img src="https://pic4.zhimg.com/v2-cb1fd5e5a2e73f513234e434724c7c55_r.jpg" alt=""></p>
+<p>进入根目录里的themes文件夹，里面也有个_config.yml文件，这个称为主题配置文件，如下图</p>
+<p><img src="https://pic3.zhimg.com/80/v2-4252029e5634bf91c7d58916ae2b8ac3_hd.jpg" alt=""></p>
+<p>这两个配置文件几乎决定你的博客网站的大部分细节（需要提醒的是：yaml文件的对格式要求严格，英文冒号后必须有空格），这里介绍下站点配置文件，主题配置文件根据自己选用不同的主题去官网查看配置介绍。<br><a href="https://blog.junyu.io/posts/0004-hexo-config-settings.html" target="_blank" rel="noopener">配置文件详细说明</a><br>进入 Github 个人主页中的 Repository，复制新建的独立博客项目:<a href="http://username.github.io" target="_blank" rel="noopener">http://username.github.io</a> 的 SSH 码</p>
+<p><img src="https://pic1.zhimg.com/80/v2-a535a1289f127f6440c202f46745886e_hd.jpg" alt=""></p>
+<p>打开站点配置文件,把刚刚复制的 SSH 码粘贴到“repository：”后面，别忘了冒号后要空一格。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:username/username.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
+<p>有了这个配置和你之前创建的SSH key 就能确保 hexo d 的部署的时候推送到你的GitHub</p>
+<p>接着执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></p>
+<p>部署成功，那么恭喜你就可以用username.github.io来访问了</p>
+<p>如果遇到问题，可以查看<a href="https://xuanwo.org/2014/08/14/hexo-usual-problem/" target="_blank" rel="noopener">hexo常见问题</a></p>
+<h2 id="域名绑定"><a href="#域名绑定" class="headerlink" title="域名绑定"></a>域名绑定</h2><p>实际上就是绑定域名到你的github pages上，我自己没有个人域名，这里先推荐一篇<a href="http://www.pchou.info/ssgithubPage/2013-01-05-build-github-blog-page-03.html" target="_blank" rel="noopener">域名绑定</a></p>
+<p>下面一篇博客会详细介绍博客网站的主题与写博客等进阶教程，帮助你个性化自己的博客。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/32957389" target="_blank" rel="noopener">参考链接1</a><br><a href="https://blog.junyu.io/posts/0004-hexo-config-settings.html" target="_blank" rel="noopener">参考链接2</a><br><a href="http://www.cnblogs.com/dantefung/p/d8c48ba8030bcab7cfc364d423186fee.html" target="_blank" rel="noopener">参考链接3</a></p>
 
           
         
@@ -383,7 +528,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">星辰墨隐</p>
-              <p class="site-description motion-element" itemprop="description">星辰墨隐</p>
+              <p class="site-description motion-element" itemprop="description">星辰墨隐的博客</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -394,13 +539,31 @@
                 <a href="/archives/">
               
                   <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>
@@ -444,7 +607,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -452,7 +615,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
 
 
 
@@ -566,6 +729,14 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://rui.disqus.com/count.js" async></script>
+    
+
+    
+
+  
+
 
 
 
@@ -581,10 +752,6 @@
 
 
 
-  
-
-
-
 
 
 
@@ -610,6 +777,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
