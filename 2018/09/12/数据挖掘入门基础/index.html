@@ -1,0 +1,2178 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="入门，数据挖掘，算法," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这篇博客是我刚开始接触数据挖掘的总结，虽然有些地方不是很详细，但框架还是很清晰，适合于小白入门，至于后面说的比较概括性的知识点，大家可以多Google搞清楚。如果您能坚持着阅读完这篇博客，恭喜你算是入门数据挖掘，接下来您就需要在主流会议和期刊找论文去提升自己了。  虽然python的Sklearn包中都有，但对于简单的算法建议自己动手实现一下，或者涉及到数学推导的也去自己推导一下。  另外，大家">
+<meta name="keywords" content="入门，数据挖掘，算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据挖掘入门基础">
+<meta property="og:url" content="http://yoursite.com/2018/09/12/数据挖掘入门基础/index.html">
+<meta property="og:site_name" content="星辰墨隐">
+<meta property="og:description" content="这篇博客是我刚开始接触数据挖掘的总结，虽然有些地方不是很详细，但框架还是很清晰，适合于小白入门，至于后面说的比较概括性的知识点，大家可以多Google搞清楚。如果您能坚持着阅读完这篇博客，恭喜你算是入门数据挖掘，接下来您就需要在主流会议和期刊找论文去提升自己了。  虽然python的Sklearn包中都有，但对于简单的算法建议自己动手实现一下，或者涉及到数学推导的也去自己推导一下。  另外，大家">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268/sign=443f2addacc379317d68812fd3c6b784/29381f30e924b89995ce91e36d061d950b7bf67f.jpg">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/788978/201704/788978-20170416215130915-20970168.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119161846125-505903867.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119163935296-1386696266.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119164235343-504556889.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119165427593-1237891371.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119170723421-1812925376.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119171924093-1331841220.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119205610265-1248946944.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119205839703-739252492.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119210046375-59327550.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119210254812-1959388744.png">
+<meta property="og:image" content="https://images0.cnblogs.com/blog2015/771535/201508/041623504236939.jpg">
+<meta property="og:image" content="https://static.leiphone.com/uploads/new/article/740_740/201705/5927d68171f42.jpg?imageMogr2/format/jpg/quality/90">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/764050/201606/764050-20160619145050085-1140057304.jpg">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/673793/201512/673793-20151219151604318-1557737289.jpg">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1500965-96cd4ecd1f413272.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
+<meta property="og:updated_time" content="2018-09-12T07:20:05.939Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据挖掘入门基础">
+<meta name="twitter:description" content="这篇博客是我刚开始接触数据挖掘的总结，虽然有些地方不是很详细，但框架还是很清晰，适合于小白入门，至于后面说的比较概括性的知识点，大家可以多Google搞清楚。如果您能坚持着阅读完这篇博客，恭喜你算是入门数据挖掘，接下来您就需要在主流会议和期刊找论文去提升自己了。  虽然python的Sklearn包中都有，但对于简单的算法建议自己动手实现一下，或者涉及到数学推导的也去自己推导一下。  另外，大家">
+<meta name="twitter:image" content="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268/sign=443f2addacc379317d68812fd3c6b784/29381f30e924b89995ce91e36d061d950b7bf67f.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/12/数据挖掘入门基础/"/>
+
+
+
+
+
+  <title>数据挖掘入门基础 | 星辰墨隐</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">星辰墨隐</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/12/数据挖掘入门基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="星辰墨隐">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰墨隐">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据挖掘入门基础</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T15:07:59+08:00">
+                2018-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据挖掘/" itemprop="url" rel="index">
+                    <span itemprop="name">数据挖掘</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/12/数据挖掘入门基础/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/09/12/数据挖掘入门基础/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li><p>这篇博客是我刚开始接触数据挖掘的总结，虽然有些地方不是很详细，但框架还是很清晰，适合于小白入门，至于后面说的比较概括性的知识点，大家可以多Google搞清楚。如果您能坚持着阅读完这篇博客，恭喜你算是入门数据挖掘，接下来您就需要在主流会议和期刊找论文去提升自己了。</p>
+</li>
+<li><p>虽然python的Sklearn包中都有，但对于简单的算法建议自己动手实现一下，或者涉及到数学推导的也去自己推导一下。</p>
+</li>
+<li><p>另外，大家也可以自己去研究下weka这个软件，做数据挖掘还是很有意思的。</p>
+</li>
+<li><p>本博客的代码以及数据可以去<a href="https://github.com/XCMY-ZR/Data-Mining" target="_blank" rel="noopener">github</a>查看。</p>
+</li>
+</ul>
+<h1 id="Chapter-1-引论"><a href="#Chapter-1-引论" class="headerlink" title="Chapter 1 引论"></a>Chapter 1 引论</h1><h2 id="1-1-什么是大数据及其特点"><a href="#1-1-什么是大数据及其特点" class="headerlink" title="1.1 什么是大数据及其特点"></a>1.1 什么是大数据及其特点</h2><blockquote>
+<p>Big data is a buzzword, or catch-phrase, used to describe a massive volume of both structured and unstructured data that is so large that it’s difficult to process using traditional database and software techniques.  (IDC white paper, 2011)</p>
+</blockquote>
+<p>大数据是一种流行词或流行语，用于描述大量的结构化和非结构化数据，这些数据非常庞大，难以使用传统的数据库和软件技术进行处理。</p>
+<h3 id="1-1-1-特点"><a href="#1-1-1-特点" class="headerlink" title="1.1.1 特点"></a>1.1.1 特点</h3><ul>
+<li>Volume of the data 数据量大 （规模性）</li>
+<li>Variety different forms of data 多种不同形式的数据（多样性）</li>
+<li>Velocity analysis of streaming data 数据产生分析快（高速性）</li>
+<li>Veracity uncertainty of data 数据价值密度低，不确定（不确定性）</li>
+</ul>
+<h2 id="1-2-知识发现的流程以及核心"><a href="#1-2-知识发现的流程以及核心" class="headerlink" title="1.2 知识发现的流程以及核心"></a>1.2 知识发现的流程以及核心</h2><h3 id="1-2-1-数据中的知识发现（KDD）"><a href="#1-2-1-数据中的知识发现（KDD）" class="headerlink" title="1.2.1 数据中的知识发现（KDD）"></a>1.2.1 数据中的知识发现（KDD）</h3><ol>
+<li>数据清理（消除噪声，删除不一致数据）</li>
+<li>数据集成（多种数据源可以组合在一起）</li>
+<li>数据选择（从数据库中提取与分析任务相关的数据）</li>
+<li>数据变换（通过汇总或聚集操作，把数据变换和统一成适合挖掘的形式）</li>
+<li>数据挖掘（基本步骤，使用智能方法提取数据模式）</li>
+<li>模式评估（根据某种兴趣度度量，识别代表知识的真正有趣的模式）</li>
+<li>知识表示 （使用可视化和知识表示技术，向用户提供挖掘的知识）</li>
+</ol>
+<p><img src="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268/sign=443f2addacc379317d68812fd3c6b784/29381f30e924b89995ce91e36d061d950b7bf67f.jpg" alt="image"></p>
+<h4 id="核心-：-数据挖掘"><a href="#核心-：-数据挖掘" class="headerlink" title="核心 ： 数据挖掘"></a><strong>核心 ： 数据挖掘</strong></h4><h2 id="1-3-什么是数据挖掘，有哪些任务"><a href="#1-3-什么是数据挖掘，有哪些任务" class="headerlink" title="1.3 什么是数据挖掘，有哪些任务"></a>1.3 什么是数据挖掘，有哪些任务</h2><p>数据挖掘是从海量数据中挖掘有趣的、有用的、先前未知的模式和知识的过程</p>
+<h3 id="1-3-1-主要任务"><a href="#1-3-1-主要任务" class="headerlink" title="1.3.1 主要任务"></a>1.3.1 主要任务</h3><ul>
+<li>关联规则挖掘</li>
+<li>分类/回归</li>
+<li>聚类</li>
+<li>离群点分析</li>
+</ul>
+<h2 id="1-4-主流会议与期刊"><a href="#1-4-主流会议与期刊" class="headerlink" title="1.4 主流会议与期刊"></a>1.4 主流会议与期刊</h2><h3 id="1-4-1-会议"><a href="#1-4-1-会议" class="headerlink" title="1.4.1 会议"></a>1.4.1 会议</h3><ul>
+<li>ACM SIGKDD (A+), Feb. </li>
+<li>IEEE ICDM (A), Jun. </li>
+<li>SIAM SDM (A), Oct.</li>
+<li>ECML/PKDD (A-), Apr.</li>
+<li>PAKDD (B+), Oct.<h3 id="1-4-2-期刊"><a href="#1-4-2-期刊" class="headerlink" title="1.4.2 期刊"></a>1.4.2 期刊</h3></li>
+<li>IEEE Transactions on Knowledge and Data  </li>
+<li>Engineering (TKDE)</li>
+<li>SIGKDD Explorations</li>
+<li>ACM Transactions on Knowledge Discovery From Data (TKDD)</li>
+<li>Data Mining and Knowledge Discovery</li>
+<li>Knowledge and Information Systems (KAIS)</li>
+</ul>
+<h1 id="Chapter-2-认识数据与预处理"><a href="#Chapter-2-认识数据与预处理" class="headerlink" title="Chapter 2 认识数据与预处理"></a>Chapter 2 认识数据与预处理</h1><h2 id="2-1-认识数据"><a href="#2-1-认识数据" class="headerlink" title="2.1 认识数据"></a>2.1 认识数据</h2><h3 id="2-1-1-基本概念"><a href="#2-1-1-基本概念" class="headerlink" title="2.1.1.基本概念"></a>2.1.1.基本概念</h3><ul>
+<li>数据是描述对象的抽象</li>
+<li><strong>数据集</strong> ：数据对象的集合</li>
+<li><strong>数据对象</strong>　：记录、点、向量、模式、事件、样本、案例、观测或实体</li>
+<li><strong>属性</strong>　：用作刻画对象的基本性质或特性，也称变量、特性、字段、特征或维</li>
+<li><strong>属性值</strong>：是赋予属性的数或符号</li>
+</ul>
+<h3 id="2-1-2-属性类型"><a href="#2-1-2-属性类型" class="headerlink" title="2.1.2 属性类型"></a>2.1.2 属性类型</h3><h4 id="分类型（Categorical）"><a href="#分类型（Categorical）" class="headerlink" title="分类型（Categorical）"></a>分类型（Categorical）</h4><ul>
+<li>标称（Nominal）-特殊有：二元（仅仅是不同的名字，即标称值只提供足够的信息以区分对象）<ul>
+<li>例：ID号、眼球颜色、邮政编码</li>
+<li>操作：众数、熵、列联相关、卡方检验</li>
+</ul>
+</li>
+<li>序数（Ordinal）（提供足够的信息确定对象的序）<ul>
+<li>例：军阶、GPA、用{tall,medium,short}表示的高</li>
+<li>操作：中值、百分位、秩相关、游程检验、符号检验</li>
+</ul>
+</li>
+</ul>
+<h4 id="数值型（Numerical）"><a href="#数值型（Numerical）" class="headerlink" title="数值型（Numerical）"></a>数值型（Numerical）</h4><ul>
+<li>区间（Interval）（值之间的差是有意义的，即存在测量单位）<ul>
+<li>例：日历、摄氏或华氏温度</li>
+<li>操作：均值、标准差、皮尔逊相关、t和f检验</li>
+</ul>
+</li>
+<li>比率（Ratio）（差与比率都有意义）<ul>
+<li>开氏温度、长度、计数</li>
+<li>操作：几何平均、调和平均、百分比差</li>
+</ul>
+</li>
+</ul>
+<p><strong>通常，标称、序数属性为离散的，区间和比率属性是连续的。</strong></p>
+<h4 id="二元属性"><a href="#二元属性" class="headerlink" title="二元属性"></a>二元属性</h4><ul>
+<li>离散属性特例</li>
+<li>仅仅取两个不同的值，0/1、真/假、是/否、男/女</li>
+<li><strong>对称的二元属性</strong>：两个值一样重要 男/女</li>
+<li><strong>非对称的二元属性</strong>：一个值比另一个值更重要。化验结果中（阴性、阳性）阳性较少，值得关注。</li>
+</ul>
+<h3 id="2-1-3-数据类型"><a href="#2-1-3-数据类型" class="headerlink" title="2.1.3 数据类型"></a>2.1.3 数据类型</h3><ul>
+<li>记录数据<ul>
+<li>数据矩阵</li>
+<li>文档数据</li>
+<li>购物篮数据（事务数据）</li>
+</ul>
+</li>
+<li>图数据<ul>
+<li>万维网</li>
+<li>分子结构</li>
+</ul>
+</li>
+<li>有序数据<ul>
+<li>时许数据</li>
+<li>序列数据</li>
+<li>基因序列数据</li>
+<li>空间数据</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-1-4-数据的描述"><a href="#2-1-4-数据的描述" class="headerlink" title="2.1.4 数据的描述"></a>2.1.4 数据的描述</h3><h4 id="中心性描述"><a href="#中心性描述" class="headerlink" title="中心性描述"></a>中心性描述</h4><ul>
+<li>均值</li>
+<li>众数</li>
+<li>中位数</li>
+<li>中列数（最大最小平均值）</li>
+</ul>
+<h4 id="散度描述"><a href="#散度描述" class="headerlink" title="散度描述"></a>散度描述</h4><ul>
+<li>极差</li>
+<li>四分位数（二分位数实际上是中位数）</li>
+<li>方差、标准差</li>
+<li>四分位数极差（横坐标25%分位数点与75%分位数点的距离）</li>
+</ul>
+<h3 id="2-1-5-数据的相似性度量"><a href="#2-1-5-数据的相似性度量" class="headerlink" title="2.1.5 数据的相似性度量"></a>2.1.5 数据的相似性度量</h3><blockquote>
+<p>相似性与相异型都称邻近性，如果两个对象i和j不相似，则它们的相似性度量为0，相异型度量为1</p>
+</blockquote>
+<h4 id="标称属性数据"><a href="#标称属性数据" class="headerlink" title="标称属性数据"></a>标称属性数据</h4><p>相异性度量的方法：</p>
+<p>$$ d(i,j)=\frac{p-m}{p} $$</p>
+<p>m：状态取值匹配的变量数目，</p>
+<p>p:变量总数</p>
+<h4 id="二元属性数据"><a href="#二元属性数据" class="headerlink" title="二元属性数据"></a>二元属性数据</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">属性值</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">q</td>
+<td style="text-align:center">r</td>
+<td style="text-align:center">q+r</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">s</td>
+<td style="text-align:center">t</td>
+<td style="text-align:center">s+t</td>
+</tr>
+<tr>
+<td style="text-align:center">sum</td>
+<td style="text-align:center">q+s</td>
+<td style="text-align:center">r+t</td>
+<td style="text-align:center">p</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>对称的二元变量的相异度计算</li>
+</ul>
+<p>$$ d(i,j)=\frac{r+s}{q+r+s+t} $$</p>
+<ul>
+<li>非对称的二元变量相异度计算</li>
+</ul>
+<p>$$ d(i,j)=\frac{r+s}{q+r+s} $$</p>
+<blockquote>
+<p>对与非对称的相异度，负匹配数目t被认为不重要而忽略</p>
+</blockquote>
+<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><table>
+<thead>
+<tr>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Gender</th>
+<th style="text-align:center">Fever</th>
+<th style="text-align:center">Cough</th>
+<th style="text-align:center">Test1</th>
+<th style="text-align:center">Test2</th>
+<th style="text-align:center">Test3</th>
+<th style="text-align:center">Test4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Jack</td>
+<td style="text-align:center">M</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">P</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">N</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">Mary</td>
+<td style="text-align:center">F</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">P</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">P</td>
+<td style="text-align:center">N</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center">Jim</td>
+<td style="text-align:center">M</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">P</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">N</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Gender是对称的，其余都不是对称的</p>
+<p>Y和P的值设置为1，而N的值设置为0</p>
+<p>$$<br>d(Jack,Mary)=\frac{0+1}{2+0+1}=0.33<br>$$<br>$$<br>d(Jack,Jim)=\frac{1+1}{1+1+1}=0.67<br>$$<br>$$<br>d(Jim,Mary)=\frac{1+2}{1+1+2}=0.75<br>$$</p>
+<h4 id="数值型数据的相异性"><a href="#数值型数据的相异性" class="headerlink" title="数值型数据的相异性"></a>数值型数据的相异性</h4><h5 id="闵科夫斯基距离"><a href="#闵科夫斯基距离" class="headerlink" title="闵科夫斯基距离"></a>闵科夫斯基距离</h5><p>$$<br>d(i,j)=\sqrt[h]{|x_{i1}-x_{j1}|^h+|x_{i2}-x_{j2}|^h+……+|x_{ip}-x_{jp}|^h}<br>$$</p>
+<ul>
+<li>h=1为曼哈顿距离</li>
+<li>h=2为欧几里得距离</li>
+</ul>
+<h4 id="序数属性的邻近性度量"><a href="#序数属性的邻近性度量" class="headerlink" title="序数属性的邻近性度量"></a>序数属性的邻近性度量</h4><p>例如一个序数属性{fair、good、excellent}可以映射为{0，0.5，1}利用数值型方法去度量</p>
+<h4 id="混合类型属性的相异性"><a href="#混合类型属性的相异性" class="headerlink" title="混合类型属性的相异性"></a>混合类型属性的相异性</h4><p>分别计算相异性矩阵求和求平均</p>
+<p><strong>需要注意：</strong> 需要把相异型矩阵的数值压缩到区间[0,1]利用最大最小归一化</p>
+<h4 id="余弦相似性"><a href="#余弦相似性" class="headerlink" title="余弦相似性"></a>余弦相似性</h4><p>$$<br>sim(\mathbf{x},\mathbf{y})=\frac{\mathbf{x}\cdot\mathbf{y}}{||\mathbf{x}||||\mathbf{y}||}<br>$$</p>
+<h2 id="2-2-数据预处理"><a href="#2-2-数据预处理" class="headerlink" title="2.2 数据预处理"></a>2.2 数据预处理</h2><h3 id="2-2-1-主要任务"><a href="#2-2-1-主要任务" class="headerlink" title="2.2.1 主要任务"></a>2.2.1 主要任务</h3><ul>
+<li>数据清理：空缺值，噪声数据，删除孤立点，解决不一致性</li>
+<li>数据集成：集成多个数据库、数据立方体或文件</li>
+<li>数据归约：得到数据的压缩表示</li>
+<li>数据变换：规范化和聚集</li>
+<li>数据离散化：将连续数据进行离散处理</li>
+</ul>
+<h4 id="数据清理"><a href="#数据清理" class="headerlink" title="数据清理"></a>数据清理</h4><h5 id="缺失值处理"><a href="#缺失值处理" class="headerlink" title="缺失值处理"></a>缺失值处理</h5><ul>
+<li>属性缺少值百分比很大时，可以忽略此属性</li>
+<li>人工填写：工作量大，可行性低</li>
+<li>使用一个全局变量填充空缺值，比如Unknown</li>
+<li>使用属性的平均值填充空缺值</li>
+<li>使用与给定元祖属同一类的所有样本的平均值</li>
+<li>使用最可能的值填充：例如，其余属性值与之特别相近前k个平均<h5 id="噪声处理"><a href="#噪声处理" class="headerlink" title="噪声处理"></a>噪声处理</h5></li>
+<li>分箱：首先排序数据，并将他们分到等深的箱中，然后可以按箱的平均值、按箱的中值，按箱的边界平滑</li>
+<li>聚类方法找出孤立点</li>
+</ul>
+<h4 id="数据集成"><a href="#数据集成" class="headerlink" title="数据集成"></a>数据集成</h4><p>将多个数据源中的数据整合到一个一致的存储中</p>
+<p>集成多个数据时，经常会出现冗余数据</p>
+<ul>
+<li>同一个属性在不同的数据库中有不同的字段</li>
+<li>一个属性可以由另一个表导出，如年薪</li>
+</ul>
+<h5 id="冗余数据处理"><a href="#冗余数据处理" class="headerlink" title="冗余数据处理"></a>冗余数据处理</h5><ul>
+<li>数值型</li>
+</ul>
+<p>相关分析——皮尔逊系数</p>
+<p>$$<br>r_{A,B}=\frac{\sum_{i=1}^n(a_i-A)(b_i-B)}{(n-1)\sigma_A\sigma_B}<br>$$</p>
+<ul>
+<li>n：样本个数</li>
+<li>A、B两个属性的平均值</li>
+<li><p>$\sigma_A$ $\sigma_B$各自标准差</p>
+</li>
+<li><p>标称数据<br>相关分析——卡方检验</p>
+</li>
+</ul>
+<p>$$<br>\chi^2=\sum_{i=1}^c\sum_{j=1}^r\frac{(o_{ij}-e_{ij})^2}{e_{ij}}<br>$$</p>
+<ul>
+<li>$o_{ij}$是事件$(A_i,B_i)$的观测频度，而$e_{ij}$是事件$(A_i,B_i)$的期望频度。</li>
+</ul>
+<p>$$<br>e_{ij}=\frac{count(A=a_i)\times count(B=b_j)}{n}<br>$$<br><strong>自由度为$(r-1)\times(c-1)$</strong></p>
+<h6 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h6><table>
+<thead>
+<tr>
+<th style="text-align:center">属性</th>
+<th style="text-align:center">男</th>
+<th style="text-align:center">女</th>
+<th style="text-align:center">合计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">小说</td>
+<td style="text-align:center">250（90）</td>
+<td style="text-align:center">200（360）</td>
+<td style="text-align:center">450</td>
+</tr>
+<tr>
+<td style="text-align:center">非小说</td>
+<td style="text-align:center">50（210）</td>
+<td style="text-align:center">1000（840）</td>
+<td style="text-align:center">1050</td>
+</tr>
+<tr>
+<td style="text-align:center">合计</td>
+<td style="text-align:center">300</td>
+<td style="text-align:center">1200</td>
+<td style="text-align:center">1500</td>
+</tr>
+</tbody>
+</table>
+<p>$$<br>e_{11}=\frac{count(\text 男)\times count(\text 小\text说)}{n}=\frac{300\times450}{1500}=90<br>$$</p>
+<p>$$……$$</p>
+<p>$$<br>\chi^2=\frac{(250-90)^2}{90}+\frac{(50-210)^2}{210}+\frac{(200-360)^2}{360}+\frac{(1000-8400)^2}{840}=507.93<br>$$<br>对于$2\times2$的表自由度为$(2-1)(2-1)=1$。对于自由度1，在0.001的置信水平下，拒绝假设的值是10.82，则这两个属性强相关。</p>
+<h4 id="数据归约"><a href="#数据归约" class="headerlink" title="数据归约"></a>数据归约</h4><p>用来得到数据集的归约表示，它小的多，但可以产生相同的分析结果</p>
+<ul>
+<li>维归约：小波分析、PCA、特征筛选</li>
+<li>数量归约：回归、聚类、采样、数据立方题聚集</li>
+<li>数据压缩：使用变换</li>
+</ul>
+<pre><code>- 最大最小规范化（压缩到0-1） 
+- z-score规范化
+</code></pre><p>z-score规范化$v^{‘}=\frac{v-\mu}{\sigma}$</p>
+<h1 id="Chapter-3-关联规则挖掘"><a href="#Chapter-3-关联规则挖掘" class="headerlink" title="Chapter 3 关联规则挖掘"></a>Chapter 3 关联规则挖掘</h1><h2 id="3-1-什么是关联规则挖掘"><a href="#3-1-什么是关联规则挖掘" class="headerlink" title="3.1 什么是关联规则挖掘"></a>3.1 什么是关联规则挖掘</h2><blockquote>
+<p>给定事务的集合T，关联规则发现是找出支持度大于等于min_sup并且置信度大于等于min_conf的所有规则，min_sup和min_conf是对应的支持度和置信度阈值</p>
+</blockquote>
+<h3 id="3-1-1-一般来说该过程包含两步"><a href="#3-1-1-一般来说该过程包含两步" class="headerlink" title="3.1.1 一般来说该过程包含两步"></a>3.1.1 一般来说该过程包含两步</h3><p>1.找出所有频繁项集</p>
+<p>2.依据频繁项集找到强关联规则</p>
+<h3 id="3-1-2-基本概念"><a href="#3-1-2-基本概念" class="headerlink" title="3.1.2 基本概念"></a>3.1.2 基本概念</h3><ul>
+<li>项集：包含0个或多个项的集合</li>
+<li>k-项集：包含k个项的项集</li>
+<li>支持度计数：包含特定项集的事务个数</li>
+<li>支持度：包含项集的事务数与总事务数的比值</li>
+<li>频繁项集：满足最小支持度阈值的所有项集</li>
+<li>置信度：确定Y在包含X的食物中出现的频繁程度$con(X,Y)=P(Y|X)=\frac{sup(X\bigcup Y)}{sup(X)}$</li>
+</ul>
+<p><em>例子</em> (min_sup:50% min_con:50%)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Tid</th>
+<th style="text-align:center">商品列表</th>
+<th style="text-align:center"></th>
+<th style="text-align:center">频繁项集</th>
+<th style="text-align:center">支持度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">A,B,C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">{A}</td>
+<td style="text-align:center">75%</td>
+</tr>
+<tr>
+<td style="text-align:center">20</td>
+<td style="text-align:center">A,C</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">{B}</td>
+<td style="text-align:center">50%</td>
+</tr>
+<tr>
+<td style="text-align:center">30</td>
+<td style="text-align:center">A,D</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">{C}</td>
+<td style="text-align:center">50%</td>
+</tr>
+<tr>
+<td style="text-align:center">40</td>
+<td style="text-align:center">B,E,F</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">{A,C}</td>
+<td style="text-align:center">50%</td>
+</tr>
+</tbody>
+</table>
+<p>可以发现规则：A===&gt;C</p>
+<p>最小支持度{A，C}：50%</p>
+<p>最小置信度：$\frac{sup(A,C)}{sup(A)}= \frac{50\%}{75\%}=66.6\%$</p>
+<h2 id="3-2-Apriori算法"><a href="#3-2-Apriori算法" class="headerlink" title="3.2 Apriori算法"></a>3.2 Apriori算法</h2><p>Apriori算法是经典的挖掘频繁项集和关联规则的数据挖掘算法。</p>
+<p>Apriori在拉丁语中指”来自以前”。当定义问题时，通常会使用先验知识或者假设，这被称作”一个先验”（apriori）。</p>
+<p>Apriori算法的名字正是基于这样的事实：算法使用频繁项集性质的先验性质，即频繁项集的所有非空子集也一定是频繁的。</p>
+<p>Apriori算法使用一种称为逐层搜索的迭代方法，其中k项集用于探索(k+1)项集。首先，通过扫描数据库，累计每个项的计数，并收集满足最小支持度的项，找出频繁1项集的集合。该集合记为L1。然后，使用L1找出频繁2项集的集合L2，使用L2找出L3，如此下去，直到不能再找到频繁k项集。每找出一个Lk需要一次数据库的完整扫描。</p>
+<p>Apriori算法使用频繁项集的先验性质来压缩搜索空间。</p>
+<h3 id="3-2-1-相关定义"><a href="#3-2-1-相关定义" class="headerlink" title="3.2.1 相关定义"></a>3.2.1 相关定义</h3><ul>
+<li><strong>连接步骤：频繁(k-1)项集$L_{k-1}$的自身连接产生候选k项集$C_k$</strong></li>
+</ul>
+<p>Apriori算法假定项集中的项按照字典序排序。如果$L_{k-1}$中某两个的元素（项集）ItemSet_1和ItemSet_2的前（k-2）个项是相同的，则称ItemSet_1和ItemSet_2是可连接的。</p>
+<ul>
+<li><strong>剪枝策略</strong></li>
+</ul>
+<p>由于存在先验性质：任何非频繁的(k-1)项集都不是频繁k项集的子集。因此，如果一个候选k项集$C_k$的(k-1)项子集不在$L_{k-1}$中，则该候选也不可能是频繁的，从而可以从$C_k$中删除，获得压缩后的$C_k$。</p>
+<ul>
+<li><strong>删除策略</strong></li>
+</ul>
+<p>基于压缩后的$C_k$，扫描所有事务，对$C_k$中的每个项进行计数，然后删除不满足最小支持度的项，从而获得频繁k项集，即$L_{k}$。</p>
+<h3 id="3-2-2-步骤"><a href="#3-2-2-步骤" class="headerlink" title="3.2.2 步骤"></a>3.2.2 步骤</h3><ol>
+<li>每个项都是候选1项集的集合$C_1$的成员。算法扫描所有的事务，获得每个项，生成$C_1$。然后对每个项进行计数。然后根据最小支持度从$C_1$中删除不满足的项，从而获得频繁1项集$L_1$。</li>
+<li>对$L_1$的自身连接生成的集合执行剪枝策略产生候选2项集的集合$C_2$，然后，扫描所有事务，对$C_2$中每个项进行计数。同样的，根据最小支持度从$C_2$中删除不满足的项，从而获得频繁2项集$L_2$。</li>
+<li>对$L_2$的自身连接生成的集合执行剪枝策略产生候选3项集的集合$C_3$，然后，扫描所有事务，对$C_3$每个项进行计数。同样的，根据最小支持度从$C_3$中删除不满足的项，从而获得频繁3项集$L_3$。</li>
+<li>以此类推，对$L_{k-1}$的自身连接生成的集合执行剪枝策略产生候选k项集$C_k$，然后，扫描所有事务，对$C_K$中的每个项进行计数。然后根据最小支持度从$C_k$中删除不满足的项，从而获得频繁k项集。</li>
+</ol>
+<h4 id="由频繁项集产生关联规则"><a href="#由频繁项集产生关联规则" class="headerlink" title="由频繁项集产生关联规则"></a>由频繁项集产生关联规则</h4><p>一旦找出了频繁项集，就可以直接由它们产生强关联规则。产生步骤如下：</p>
+<ul>
+<li>对于每个频繁项集ItemSet，产生ItemSet的所有非空子集（这些非空子集一定是频繁项集）</li>
+<li>对于itemset的每个非空子集s,如果$\frac{sup(l)}{sup(s)}&gt;=min_conf$，则输出s==&gt;(l-s)，其中min_conf是最小置信度阈值。<br><img src="https://images2015.cnblogs.com/blog/788978/201704/788978-20170416215130915-20970168.png" alt="image"></li>
+</ul>
+<h4 id="python代码如下："><a href="#python代码如下：" class="headerlink" title="python代码如下："></a>python代码如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">class Apriori:</span><br><span class="line">    dataSet = []</span><br><span class="line">    minSopport = 0.2</span><br><span class="line">    minConf = 0.7</span><br><span class="line">    def __init__(self,dataSet,minSopport,minConf):</span><br><span class="line">        self.dataSet = dataSet</span><br><span class="line">        self.minConf = minConf</span><br><span class="line">        self.minSopport = minSopport</span><br><span class="line">        </span><br><span class="line">    def creatC1(self):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        找出频繁一项集</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        C1=[]</span><br><span class="line">        for transaction in self.dataSet:</span><br><span class="line">            for item in transaction:</span><br><span class="line">                if not[item] in C1:</span><br><span class="line">                    C1.append([item])</span><br><span class="line">        C1.sort();</span><br><span class="line">        return map(frozenset,C1)</span><br><span class="line">    </span><br><span class="line">    def ScanD(self,Data,Ck):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        找出候选频繁项集，扫描数据集计算候选频繁项集的支持度</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        ssCnt=&#123;&#125;</span><br><span class="line">        for tid in Data:</span><br><span class="line">            for can in Ck:</span><br><span class="line">                if can.issubset(tid):#tid的事务数据集包含can</span><br><span class="line">                    if can in ssCnt:</span><br><span class="line">                        ssCnt[can]+=1</span><br><span class="line">                    else:</span><br><span class="line">                        ssCnt[can]=1</span><br><span class="line">        numItems = float(len(Data))</span><br><span class="line">        retlist = [];</span><br><span class="line">        supportData = &#123;&#125;</span><br><span class="line">        #计算所有项集的支持度</span><br><span class="line">        for key in ssCnt:</span><br><span class="line">            support = ssCnt[key]/numItems</span><br><span class="line">            if support&gt;=self.minSopport:</span><br><span class="line">                retlist.insert(0,key)</span><br><span class="line">            supportData[key] = support</span><br><span class="line">        return retlist,supportData</span><br><span class="line">    </span><br><span class="line">    def has_infrequen_subset(self,Ck_item,Lk):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        剪枝判断操作</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        for item in Ck_item:</span><br><span class="line">            sub_Ck = Ck_item - frozenset([item])</span><br><span class="line">            if sub_Ck not in Lk:</span><br><span class="line">                return False</span><br><span class="line">        return True</span><br><span class="line">    </span><br><span class="line">    def aprioriGen(self,Lk,k):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        自连接和剪枝</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        retlist = []</span><br><span class="line">        lenLk = len(Lk)</span><br><span class="line">        for i in range (lenLk):</span><br><span class="line">            for j in range(i+1,lenLk):  </span><br><span class="line">                L1=list(Lk[i])[:k-2]</span><br><span class="line">                L2=list(Lk[j])[:k-2]</span><br><span class="line">                L1.sort()</span><br><span class="line">                L2.sort()</span><br><span class="line">                if L1==L2:  </span><br><span class="line">                    Ck_item=Lk[i]|Lk[j]</span><br><span class="line">                    if self.has_infrequen_subset(Ck_item, Lk):</span><br><span class="line">                        retlist.append(Ck_item)</span><br><span class="line">        return retlist</span><br><span class="line">    </span><br><span class="line">    def print_fre_set(self,L,supportData):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        打印频繁项集</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        for i in range(len(L)):</span><br><span class="line">            print(&quot;频繁&#123;0&#125;项集为：&quot;.format(i+1))</span><br><span class="line">            for j in range(len(L[i])):</span><br><span class="line">                n=supportData[L[i][j]]</span><br><span class="line">                l=[k for k in L[i][j]]</span><br><span class="line">                print(l,&apos; : &apos;,n)</span><br><span class="line">                    </span><br><span class="line">    def apriori(self):</span><br><span class="line">        C1 = list(self.creatC1())</span><br><span class="line">        D = list(map(set,self.dataSet))</span><br><span class="line">        L1,supportData = self.ScanD(D,C1)</span><br><span class="line">        L=[L1]</span><br><span class="line">        k=2</span><br><span class="line">        while(len(L[k-2])&gt;0):</span><br><span class="line">            Ck = self.aprioriGen(L[k-2],k)</span><br><span class="line">            Lk,supK=self.ScanD(D,Ck)</span><br><span class="line">            supportData.update(supK)</span><br><span class="line">            L.append(Lk)</span><br><span class="line">            k+=1</span><br><span class="line">        L.pop()</span><br><span class="line">        self.print_fre_set(L,supportData)</span><br><span class="line">        print(&quot;关联规则为：&quot;)</span><br><span class="line">        Rules = self.GetRules(L,supportData)</span><br><span class="line">        return L,supportData,Rules</span><br><span class="line">    def GetRules(self,L,supportData):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        获取关联规则</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        BigRuleList = []</span><br><span class="line">        sub_set_list = []</span><br><span class="line">        for i in range(0, len(L)):</span><br><span class="line">            for freq_set in L[i]:</span><br><span class="line">                for sub_set in sub_set_list:</span><br><span class="line">                    if sub_set.issubset(freq_set):</span><br><span class="line">                        conf = supportData[freq_set] / supportData[freq_set - sub_set]</span><br><span class="line">                        big_rule = (freq_set - sub_set, sub_set, conf)</span><br><span class="line">                        if conf &gt;= self.minConf and big_rule not in BigRuleList:</span><br><span class="line">                            L1 = [i for i in (freq_set-sub_set)]</span><br><span class="line">                            L2 = [i for i in sub_set]</span><br><span class="line">                            print (L1, &quot; ===&gt; &quot;, L2, &quot;confidence: &quot;, conf)</span><br><span class="line">                            BigRuleList.append(big_rule)</span><br><span class="line">                sub_set_list.append(freq_set)</span><br><span class="line">        return BigRuleList</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-3-提高Apriori算法的方法"><a href="#3-2-3-提高Apriori算法的方法" class="headerlink" title="3.2.3 提高Apriori算法的方法"></a>3.2.3 提高Apriori算法的方法</h3><ul>
+<li>Hash-based itemset counting(散列项集计数)</li>
+<li>Transaction reduction（事务压缩）</li>
+<li>Partitioning （划分）</li>
+<li>Sampling(采样)</li>
+</ul>
+<h4 id="Hash-based-itemset-counting"><a href="#Hash-based-itemset-counting" class="headerlink" title="Hash-based itemset counting"></a>Hash-based itemset counting</h4><p><strong>基本思想：压缩候选k项集</strong></p>
+<p>散列项集到对应的桶中，一个其hash桶的计数小于阈值的k-itenset不可能是频繁的</p>
+<h4 id="Transaction-reduction"><a href="#Transaction-reduction" class="headerlink" title="Transaction reduction"></a>Transaction reduction</h4><p><strong>基本思想：删除不可能对寻找频繁项集有用的事务</strong></p>
+<p>不包含任何频繁k项集的事务不可能包含任何k+1项集。因此这些事务在其后的考虑中，可以加上标记或删除。</p>
+<h4 id="Partitioning"><a href="#Partitioning" class="headerlink" title="Partitioning"></a>Partitioning</h4><p><strong>基本思想：分而治之</strong></p>
+<p>项集在DB中是频繁的，它必须至少在DB的一个划分中是频繁的</p>
+<ul>
+<li>扫描1：划分数据库，并找出局部频繁模式</li>
+<li>扫描2：求出全局频繁模式</li>
+</ul>
+<h4 id="抽样"><a href="#抽样" class="headerlink" title="抽样"></a>抽样</h4><p><strong>基本思想：选取原数据的一个样本，在样本利用Apriori挖掘频繁模式</strong></p>
+<p>牺牲一些精度换取有效性</p>
+<h2 id="3-3-FP-growth"><a href="#3-3-FP-growth" class="headerlink" title="3.3 FP-growth"></a>3.3 FP-growth</h2><h3 id="3-3-1-构建FP树"><a href="#3-3-1-构建FP树" class="headerlink" title="3.3.1 构建FP树"></a>3.3.1 构建FP树</h3><ol>
+<li><strong>支持度排序</strong>：扫描一次数据集，确定每个项的支持度计数。丢弃非频繁项，而将频繁项按照支持度的递减排序。L = {a:8, b:7, c:6, d:5, e:3} </li>
+<li><p><strong>构建FP</strong>树：第二次扫描数据集，读入第一个事务{a, b}之后，创建标记为a和b的结点。然后形成null-&gt;a-&gt;b路径。该路径上的所有结点的频度计数为1。</p>
+<p>  读入第二个事务{b,c,d}之后，为项b,c和d创建新的结点集。然后，连接结点null-&gt;b-&gt;c-&gt;d，形成一条代表该事务的路径。该路径上的每个结点的频度计数也等于1.</p>
+</li>
+</ol>
+<p><strong>注意</strong>：尽管前两个事务具有一个共同项b，但是它们的路径不相交，因为这两个事务没有共同的前缀.</p>
+<h4 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h4><p>项头表建立</p>
+<p><img alt="" src="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119161846125-505903867.png"></p>
+<p>有了项头表和排序后的数据集，我们就可以开始FP树的建立了。开始时FP树没有数据，建立FP树时我们一条条的读入排序后的数据集，插入FP树，插入时按照排序后的顺序，插入FP树中，排序靠前的节点是祖先节点，而靠后的是子孙节点。如果有共用的祖先，则对应的公用祖先节点计数加1。插入后，如果有新节点出现，则项头表对应的节点会通过节点链表链接上新节点。直到所有的数据都插入到FP树后，FP树的建立完成。</p>
+<p>　　　　<br>似乎也很抽象，我们还是用第二节的例子来描述。
+　　　　</p>
+<p>首先，我们插入第一条数据ACEBF，如下图所示。此时FP树没有节点，因此ACEBF是一个独立的路径，所有节点计数为1, 项头表通过节点链表链接上对应的新增节点。</p>
+<p><img alt="" src="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119163935296-1386696266.png"></p>
+<p>接着我们插入数据ACG，如下图所示。由于ACG和现有的FP树可以有共有的祖先节点序列AC，因此只需要增加一个新节点G，将新节点G的计数记为1。同时A和C的计数加1成为2。当然，对应的G节点的节点链表要更新</p>
+<p><img alt="" src="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119164235343-504556889.png"></p>
+<p>依次类推 最终得到</p>
+<p><img alt="" src="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119165427593-1237891371.png"></p>
+<h4 id="FP-Tree-挖掘"><a href="#FP-Tree-挖掘" class="headerlink" title="FP Tree 挖掘"></a>FP Tree 挖掘</h4><p>我们辛辛苦苦，终于把FP树建立起来了，那么怎么去挖掘频繁项集呢？看着这个FP树，似乎还是不知道怎么下手。下面我们讲如何从FP树里挖掘频繁项集。得到了FP树和项头表以及节点链表，我们首先要从项头表的底部项依次向上挖掘。对于项头表对应于FP树的每一项，我们要找到它的条件模式基。所谓条件模式基是以我们要挖掘的节点作为叶子节点所对应的FP子树。得到这个FP子树，我们将子树中每个节点的的计数设置为叶子节点的计数，并删除计数低于支持度的节点。从这个条件模式基，我们就可以递归挖掘得到频繁项集了。
+　　　　</p>
+<p>实在太抽象了，之前我看到这也是一团雾水。还是以上面的例子来讲解。我们看看先从最底下的F节点开始，我们先来寻找F节点的条件模式基，由于F在FP树中只有一个节点，因此候选就只有下图左所示的一条路径，对应{A:8,C:8,E:6,B:2,F:2}。我们接着将所有的祖先节点计数设置为叶子节点的计数，即FP子树变成{A:2,C:2,E:2,B:2,F:2}。一般我们的条件模式基可以不写叶子节点，因此最终的F的条件模式基如下图右所示。</p>
+<p><img alt="" src="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119170723421-1812925376.png"></p>
+<p>通过它，我们很容易得到F的频繁2项集为{A:2,F:2}, {C:2,F:2}, {E:2,F:2}, {B:2,F:2}。递归合并二项集，得到频繁三项集为{A:2,C:2,F:2}，{A:2,E:2,F:2},…还有一些频繁三项集，就不写了。当然一直递归下去，最大的频繁项集为频繁5项集，为{A:2,C:2,E:2,B:2,F:2}
+　　　　</p>
+<p>F挖掘完了，我们开始挖掘D节点。D节点比F节点复杂一些，因为它有两个叶子节点，因此首先得到的FP子树如下图左。我们接着将所有的祖先节点计数设置为叶子节点的计数，即变成{A:2, C:2,E:1 G:1,D:1, D:1}此时E节点和G节点由于在条件模式基里面的支持度低于阈值，被我们删除，最终在去除低支持度节点并不包括叶子节点后D的条件模式基为{A:2, C:2}。通过它，我们很容易得到F的频繁2项集为{A:2,D:2}, {C:2,D:2}。递归合并二项集，得到频繁三项集为{A:2,C:2,D:2}。D对应的最大的频繁项集为频繁3项集。</p>
+<p><img alt="" src="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119171924093-1331841220.png"></p>
+<p>同样的方法可以得到B的条件模式基如下图右边，递归挖掘到B的最大频繁项集为频繁4项集{A:2, C:2, E:2,B:2}。</p>
+<p><img alt="" src="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119205610265-1248946944.png"></p>
+<p>继续挖掘G的频繁项集，挖掘到的G的条件模式基如下图右边，递归挖掘到G的最大频繁项集为频繁4项集{A:5, C:5, E:4,G:4}。</p>
+<p><img alt="" src="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119205839703-739252492.png"></p>
+<p>E的条件模式基如下图右边，递归挖掘到E的最大频繁项集为频繁3项集{A:6, C:6, E:6}。</p>
+<p><img alt="" src="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119210046375-59327550.png"></p>
+<p>C的条件模式基如下图右边，递归挖掘到C的最大频繁项集为频繁2项集{A:8, C:8}。</p>
+<p><img alt="" src="https://images2015.cnblogs.com/blog/1042406/201701/1042406-20170119210254812-1959388744.png"></p>
+<p>至于A，由于它的条件模式基为空，因此可以不用去挖掘了。
+　　　　</p>
+<p>至此我们得到了所有的频繁项集，如果我们只是要最大的频繁K项集，从上面的分析可以看到，最大的频繁项集为5项集。包括{A:2, C:2, E:2,B:2,F:2}。</p>
+<h3 id="3-3-2-FP-Tree算法归纳"><a href="#3-3-2-FP-Tree算法归纳" class="headerlink" title="3.3.2 FP Tree算法归纳"></a>3.3.2 FP Tree算法归纳</h3><p>这里我们对FP Tree算法流程做一个归纳。FP Tree算法包括三步：</p>
+<ol>
+<li>扫描数据，得到所有频繁一项集的的计数。然后删除支持度低于阈值的项，将1项频繁集放入项头表，并按照支持度降序排列。
+　　　　</li>
+<li>扫描数据，将读到的原始数据剔除非频繁1项集，并按照支持度降序排列。</li>
+<li>读入排序后的数据集，插入FP树，插入时按照排序后的顺序，插入FP树中，排序靠前的节点是祖先节点，而靠后的是子孙节点。如果有共用的祖先，则对应的公用祖先节点计数加1。插入后，如果有新节点出现，则项头表对应的节点会通过节点链表链接上新节点。直到所有的数据都插入到FP树后，FP树的建立完成。</li>
+<li>从项头表的底部项依次向上找到项头表项对应的条件模式基。从条件模式基递归挖掘得到项头表项项的频繁项集。</li>
+<li>如果不限制频繁项集的项数，则返回步骤4所有的频繁项集，否则只返回满足项数要求的频繁项集。</li>
+</ol>
+<h3 id="3-3-3-关联模式评估"><a href="#3-3-3-关联模式评估" class="headerlink" title="3.3.3 关联模式评估"></a>3.3.3 关联模式评估</h3><p>关联分析算法往往产生大量的规则，而其中很大一部分可能是不感兴趣的。 因此，建立一组广泛接受的评价关联模式质量的标准是非常重要的。</p>
+<ul>
+<li>第一组标准可以通过统计论据建立。涉及相互独立的项或覆盖少量事务的模式被认为是不令人感兴趣的，因为它们可能反映数据中的伪联系。（这些令人感兴趣的模式可以使用客观兴趣度度量来排除）。</li>
+<li><p>第二组标准可以通过主观论据建立。一个模式被主观认为是无趣的，除非它能够揭示料想不到的信息或提供导致有益的行动的有用信息。</p>
+<p>  例如：{黄油} {面包}可能不是有趣的，尽管有很高的支持度和置信度，但是它表示的关系显而易见。另一方面，规则{尿布} {啤酒}是有趣的，因为这种联系十分出乎意料，并且可能为零售商提供新的交叉销售机会</p>
+</li>
+</ul>
+<p>现有的关联规则的挖掘算法依赖于<strong>支持度和置信度</strong>来除去没有意义的模式。 ==然而。。。==</p>
+<p>假定希望分析爱喝咖啡和爱喝茶的人之间的关系。收集一组人关于饮料偏爱的信息，并汇总到下表</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Drink</th>
+<th style="text-align:center">Coffee</th>
+<th style="text-align:center">No Coffee</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Tea</td>
+<td style="text-align:center">150</td>
+<td style="text-align:center">50</td>
+<td style="text-align:center">200</td>
+</tr>
+<tr>
+<td style="text-align:center">No Tea</td>
+<td style="text-align:center">650</td>
+<td style="text-align:center">150</td>
+<td style="text-align:center">800</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">800</td>
+<td style="text-align:center">200</td>
+<td>1000</td>
+</tr>
+</tbody>
+</table>
+<p>可以使用表中信息来评估关系规则{茶} -&gt;{咖啡}。<br>似乎喜欢喝茶的人也喜欢喝咖啡，因为该规则的支持度（15%）和置信度（75%）都相当高。<br>但是所有人中，不管他是否喝茶，喝咖啡的人的比例为80%。这意味着，一个人如果喝茶，则他喝咖啡的可能性由80%减到了75%。</p>
+<pre><code>强规则不一定是有趣的，甚至是“误导”的。
+</code></pre><p>   <strong>原因</strong>：置信度的缺点在于该度量忽略了规则后件中项集的支持度。</p>
+<p>  茶和咖啡的例子表明，由于置信度度量忽略了规则后件中出现的项集的支持度，高置信度的规则有时存在误导。<br>解决这个问题的一种方法是使用称作<strong>提升度lift</strong>的度量：它计算规则置信度和规则后件中项集的支持度之间的比率</p>
+<h1 id="Chapter-4-分类与预测"><a href="#Chapter-4-分类与预测" class="headerlink" title="Chapter 4 分类与预测"></a>Chapter 4 分类与预测</h1><h2 id="4-1-监督学习VS无监督学习"><a href="#4-1-监督学习VS无监督学习" class="headerlink" title="4.1 监督学习VS无监督学习"></a>4.1 监督学习VS无监督学习</h2><ul>
+<li>无监督学习（关联规则，聚类分析）<ul>
+<li>数据集的对象的类标记是未知的</li>
+<li>挖掘潜在的数据内部模式</li>
+</ul>
+</li>
+<li>监督学习（分类/预测）<ul>
+<li>数据集中的对象的类标记已知</li>
+<li>通过类标记的指导下学习数据中的模式</li>
+<li>利用获取的模式或者模型对新数据进行分类预测</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-2-模型分类"><a href="#4-2-模型分类" class="headerlink" title="4.2 模型分类"></a>4.2 模型分类</h2><p><a href="https://blog.csdn.net/u012101561/article/details/52814571" target="_blank" rel="noopener">详解生成模型与判别模型</a></p>
+<ul>
+<li>生成模型（Generative Model）希望从数据中学习/还原出原始的真实数据生成模型。常见的方法是学习数据的联合概率分布。E.g 朴素贝叶斯方法、隐马尔科夫模型等。<ul>
+<li>当容量大时，容易接近真实模型</li>
+<li>能处理具有隐含变量的情景</li>
+<li>估计的是联合概率分布（joint probability distribution），p(y, x)=p(y|x)*p(x)，由数据学习联合概率密度分布P(X,Y)，然后求出条件概率分布P(Y|X)作为预测的模型，即生成模型：P(Y|X)= P(X,Y)/ P(X)。基本思想是首先建立样本的联合概率概率密度模型P(X,Y)，然后再得到后验概率P(Y|X)，再利用它进行分类。==生成方法关心的是给定输入x产生输出y的生成关系==。</li>
+</ul>
+</li>
+<li><p>判别模型（Discriminative Model）从数据中学习到不同类概念的区别从而进行分类。如KNN，SVM, ANN, Decision Tree, etc.</p>
+<ul>
+<li>速度快</li>
+<li>准确率较高</li>
+<li>估计的是条件概率分布(conditional distribution)， p(y|x)，是给定观测变量x和目标变量y的条件模型。由数据直接学习决策函数y=f(X)或者条件概率分布P(y|x)作为预测的模型。==判别方法关心的是对于给定的输入X，应该预测什么样的输出Y。==</li>
+</ul>
+<p>==例如：== 比如说要确定一只羊是山羊还是绵羊，用判别模型的方法是先从历史数据中学习到模型，然后通过提取这只羊的特征x来预测出这只羊f(X)是山羊的概率，是绵羊的概率。用生成模型的方法是我们可以根据山羊的特征首先学习出一个山羊模型，然后根据绵羊的特征学习出一个绵羊模型。然后从这只羊中提取特征，放到山羊模型P(w1|X)中看概率是多少，再放到绵羊模型P(w2|X)中看概率是多少，如果P(w1|X)&gt;P(w2|X)，那么我们就认为X是属于w1类，即该羊属于山羊。</p>
+</li>
+</ul>
+<p>==再例如==：比如说你的任务是识别一个语音属于哪种语言。例如对面一个人走过来，和你说了一句话，你需要识别出她说的到底是汉语、英语还是法语等。那么你可以有两种方法达到这个目的：用生成模型的方法是学习每一种语言，你花了大量精力把汉语、英语和法语等都学会了，我指的学会是你知道什么样的语音对应什么样的语言。然后再有人过来对你说话，你就可以知道他的语言对应什么语言；用判别模型的方法是不去学习每一种语言，你只学习这些语言模型之间的差别，然后再分类。意思是指我学会了汉语和英语等语言的发音是有差别的，我学会这种差别就好了。</p>
+<h2 id="4-3-决策树"><a href="#4-3-决策树" class="headerlink" title="4.3 决策树"></a>4.3 决策树</h2><p>决策树又称为判定树，是运用于分类的一种树结构，其中的每个内部节点代表对某一属性的一次测试，每条边代表一个测试结果，叶节点代表某个类或类的分布。<br>决策树的决策过程需要从决策树的根节点开始，待测数据与决策树中的特征节点进行比较，并按照比较结果选择选择下一比较分支，直到叶子节点作为最终的决策结果。</p>
+<h3 id="4-3-1-决策树构造"><a href="#4-3-1-决策树构造" class="headerlink" title="4.3.1 决策树构造"></a>4.3.1 决策树构造</h3><ul>
+<li>决策归纳树算法（一个贪心算法）<ul>
+<li>自顶向下的分治方式构造决策树</li>
+<li>使用分类属性（如果是量化属性，则需先进行离散化）递归的通过选择相应的测试属性来划分样本</li>
+<li>测试属性是根据某种启发信息或者是统计信息来进行选择（如：信息增益）</li>
+</ul>
+</li>
+</ul>
+<h4 id="具体流程"><a href="#具体流程" class="headerlink" title="具体流程"></a>具体流程</h4><ol>
+<li>树以代表训练样本的单个结点开始。</li>
+<li>如果样本都在同一个类．则该结点成为树叶，并用该类标记。</li>
+<li>否则，算法选择最有分类能力的属性作为决策树的当前结点．</li>
+<li>根据当前决策结点属性取值的不同，将训练样本数据集分为若干子集，每个取值形成一个分枝，有几个取值形成几个分枝。针对上一步得到的一个子集，重复进行先前步骤，递归形成每个划分样本上的决策树。一旦一个属性出现在一个结点上，就不必在该结点的任何后代考虑它。</li>
+<li>递归划分步骤仅当下列条件之一成立时停止：<ol>
+<li>给定结点的所有样本属于同一类。</li>
+<li>没有剩余属性可以用来进一步划分样本。</li>
+<li>如果某一分枝，没有满足该分支中已有分类的样本，则以样本的多数类创建一个树叶。<h4 id="属性选择度量"><a href="#属性选择度量" class="headerlink" title="属性选择度量"></a>属性选择度量</h4></li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>属性选择度量<ul>
+<li>又称分裂规则，决定给定节点上的元组如何分裂</li>
+<li>具有最好度量得分的属性（对分出的数据类别越“纯”）选定为分裂属性</li>
+</ul>
+</li>
+<li>三种度量<ul>
+<li>信息增益</li>
+<li>信息增益率</li>
+<li>Gini指标 </li>
+</ul>
+</li>
+</ul>
+<h5 id="信息增益（ID3）"><a href="#信息增益（ID3）" class="headerlink" title="信息增益（ID3）"></a>信息增益（ID3）</h5><ul>
+<li>信息熵</li>
+</ul>
+<p>$$H(D)=- \sum_{i=1}^{k}(p_i\times logp_i)$$</p>
+<p>$p_i$表示第i类的概率</p>
+<ul>
+<li>条件信息增益</li>
+</ul>
+<p>刻画在已知X的基础上需要多少信息来描述Y</p>
+<ul>
+<li>信息增益</li>
+</ul>
+<p>$$G(D,A)=H(D)-H(D|A)$$</p>
+<p>$$H(D|A)=\sum_{i=1}^{k}p_{i}H(D|A=a_i)=-\sum_{i=1}^{k}p_i\sum_{j=1}^{n}p(y_j|x_i)log p(y_j|x_i)$$</p>
+<p>首先需要筛选出特定特征以及特定特征取值的数据集 $D|A=a_j$，再根据公式计算条件熵。</p>
+<p><strong>Eg：</strong></p>
+<table>
+<thead>
+<tr>
+<th>X</th>
+<th>Y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Math</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>History</td>
+<td>No</td>
+</tr>
+<tr>
+<td>CS</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Math</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Math</td>
+<td>No</td>
+</tr>
+<tr>
+<td>CS</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>History</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Math</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>X = 专业 </p>
+<p>Y=是否喜欢IPHINEX </p>
+<table>
+<thead>
+<tr>
+<th>$v_i$</th>
+<th style="text-align:center">$Prob(X=v_i)$</th>
+<th style="text-align:center">$H(Y</th>
+<th>X=v_i) $</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Math</td>
+<td style="text-align:center">0.5</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td>History</td>
+<td style="text-align:center">0.25</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td>CS</td>
+<td style="text-align:center">0.25</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+<p>$H(Y|X)=0.5\times1+0.25\times0+0.25\times0=0.5$</p>
+<p>刻画在已知X的基础上需要节约多少信息来描述Y<br>$IG(Y|X)=H(Y)-H(Y|X)=1-0.5=0.5$</p>
+<h5 id="信息增益率"><a href="#信息增益率" class="headerlink" title="信息增益率"></a>信息增益率</h5><ul>
+<li>信息增益倾向于有大量不同取值的属性（划分更细，更纯）<ul>
+<li>极端：每个划分子集只有一个样本，即一个类</li>
+<li>此时info（d）=0</li>
+</ul>
+</li>
+<li>C4.5（ID3升级）使用<strong>增益率</strong>来客服这一问题（规范化信息增益）</li>
+<li>具有最大增益率的属性选为分裂属性<h5 id="Gini指标"><a href="#Gini指标" class="headerlink" title="Gini指标"></a>Gini指标</h5></li>
+<li><p>是指度量元组的不纯度。数据D包含n类别的样本，Gini（D）定义为：<br>$gini(D)=1-\sum_{j=1}^{n}p_{j}^{2}$</p>
+<p>  $p_j$为类别j在D中的频率</p>
+</li>
+<li>具有最小gini的属性或者不纯度减少最大的用于分裂节点。</li>
+</ul>
+<h3 id="4-3-2-决策树过拟合问题"><a href="#4-3-2-决策树过拟合问题" class="headerlink" title="4.3.2 决策树过拟合问题"></a>4.3.2 决策树过拟合问题</h3><p>　</p>
+<blockquote>
+<p>过拟合：为了得到一致假设而使假设变得过度复杂称为过拟合</p>
+<ul>
+<li>决策树：一棵归纳的树可能过分拟合训练数据<ul>
+<li>分枝太多，某些反映训练数据中的异常，噪声/孤立点</li>
+<li>对未参与训练的样本的低精度预测</li>
+</ul>
+</li>
+<li>过拟合是监督学习中普遍存在的一个问题<ul>
+<li>原因：训练样本只是真实模型下的一个抽样集</li>
+<li>结果：模型泛化能力不强</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>过拟合解决策略<ul>
+<li>增加样本集，去除噪声</li>
+<li>降低模型复杂度</li>
+<li>Train—Validation—Test</li>
+<li>模型选择：正则项</li>
+</ul>
+</li>
+<li>决策树的过拟合的解决方案<ul>
+<li>设定决策树的最大高度（层数）来限制树的生长。</li>
+<li>设定每个节点必须包含的最小记录数，当节点中记录的个数小于这个数值时就会停止分割</li>
+<li><strong>树剪枝——先剪枝</strong>：提前终止树的构造，如果对一个节点的分裂会产生低于给定阈值的度量，划分停止。而选择一个合适的阈值很难</li>
+<li><strong>树剪枝——后剪枝</strong>：从完全生长的树中剪去树枝。但是后剪枝的计算量代价比先剪枝方法大得多，特别是在大样本集中，不过对于小样本的情况，后剪枝方法还是优于预剪枝方法的。<h3 id="4-3-3-由决策树提取分类规则"><a href="#4-3-3-由决策树提取分类规则" class="headerlink" title="4.3.3 由决策树提取分类规则"></a>4.3.3 由决策树提取分类规则</h3></li>
+</ul>
+</li>
+<li>可以提取决策树表示的知识，并以IF-THEN形式的分类规则表示</li>
+<li>对从根到树叶的每条路径创建一个规则</li>
+<li>沿着给定路径上的每个属性-值对形成规则前件（”IF”部分）的一个合取项</li>
+<li>叶节点包含类预测，形成规则后件（”THEN”部分）</li>
+<li>IF-THEN规则易于理解，尤其树很大时</li>
+</ul>
+<h2 id="4-4-KNN（K近邻算法——K-Nearest-Neighbor）"><a href="#4-4-KNN（K近邻算法——K-Nearest-Neighbor）" class="headerlink" title="4.4 KNN（K近邻算法——K-Nearest Neighbor）"></a>4.4 KNN（K近邻算法——K-Nearest Neighbor）</h2><ul>
+<li>KNN算是理论上比较成熟的方法，最初由Cover和Hart于1968年提出，是非参数法中最重要的方法之一。其思路简单直观，易于快速实现。</li>
+<li>因此，KNN算法以其实现的简单性及较高的分类准确性在中文文本自动分类等领域中得到了广泛应用。</li>
+</ul>
+<h3 id="4-4-1-KNN的基本思想"><a href="#4-4-1-KNN的基本思想" class="headerlink" title="4.4.1 KNN的基本思想"></a>4.4.1 KNN的基本思想</h3><ul>
+<li>根据距离函数计算待分类样本X和每个训练样本的距离（作为相似度），选择与待分类样本距离最小的K个样本作为X的K个最近邻，最后以X的K个最近邻中的大多数所属的类别作为X的类别。</li>
+<li>KNN可以说是一种最直接的用来分类未知数据的方法。</li>
+<li>有那么一堆你已经知道分类的数据，然后当一个新数据进入的时候，就开始跟训练数据里的每个点求距离，然后挑出离这个数据最近的K个点，看看这K个点属于什么类型，然后用少数服从多数的原则，给新数据归类。</li>
+</ul>
+<p><img src="https://images0.cnblogs.com/blog2015/771535/201508/041623504236939.jpg" alt="image"></p>
+<h3 id="4-4-2-算法计算步骤"><a href="#4-4-2-算法计算步骤" class="headerlink" title="4.4.2 算法计算步骤"></a>4.4.2 算法计算步骤</h3><ol>
+<li>算距离：给定测试对象，计算它与训练集中的每个对象的距离</li>
+<li>找邻居：圈定距离最近的k个训练对象，作为测试对象的近邻</li>
+<li>做分类：根据这k个近邻归属的主要类别，来对测试对象分类。</li>
+</ol>
+<h3 id="4-4-3-算法的优缺点"><a href="#4-4-3-算法的优缺点" class="headerlink" title="4.4.3 算法的优缺点"></a>4.4.3 算法的优缺点</h3><ul>
+<li>优点：<ol>
+<li>简单，易于理解，易于实现，无需估计参数，无需训练；</li>
+<li>准确度一般较高</li>
+<li>特别适合与多标签的问题，KNN比SVM的表现要好。</li>
+</ol>
+</li>
+<li>缺点:<ol>
+<li>懒惰算法，对测试样本分类时的计算量大，内存开销大，评分慢；</li>
+<li>当样本不平衡时，如一个类的样本容量很大，而其他类样本容量很小时，有可能导致当输入一个新的样本时，该样本的K个邻居中大容量的样本占多数。</li>
+<li>可解释性差，无法给出决策树那样的规则</li>
+</ol>
+</li>
+</ul>
+<h3 id="4-4-4-KNN常见的问题"><a href="#4-4-4-KNN常见的问题" class="headerlink" title="4.4.4 KNN常见的问题"></a>4.4.4 KNN常见的问题</h3><ul>
+<li>K值的设定<ul>
+<li>值选择过小，得到的近邻数过少，会降低分类精度，同时也会放大噪声数据的干扰；</li>
+<li>而如果k值选择过大，并且待分类样本属于训练集中包含数据数较少的类，那么在选择k个近邻的时候，实际上并不相似的数据亦被包含进来，造成噪声增加而导致分类效果的降低。</li>
+</ul>
+</li>
+<li>类别的判定方式<ul>
+<li>投票法没有考虑近邻的距离的远近，距离更近的近邻也许更应该决定最终的分类，所以加权投票法更恰当一些。</li>
+</ul>
+</li>
+<li>距离度量方式的选择<ul>
+<li>当变量数越多（高维），欧式距离的区分能力就越差；</li>
+<li>值域越大的变量常常会在距离计算中占据主导作用，因此应先对变量进行标准化。</li>
+</ul>
+</li>
+<li>训练样本的参考原则<ul>
+<li>减少训练集的大小</li>
+<li>通过聚类，将聚类所产生的中心点作为新的训练样本</li>
+</ul>
+</li>
+<li>性能问题<ul>
+<li>kNN是一种懒惰算法，而懒惰的后果：构造模型很简单但在对测试样本分类地的系统开销大，因为要扫描全部训练样本并计算距离。</li>
+<li>已经有一些方法提高计算的效率，例如压缩训练样本量等</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-4-5-实现代码"><a href="#4-4-5-实现代码" class="headerlink" title="4.4.5 实现代码"></a>4.4.5 实现代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import math</span><br><span class="line"></span><br><span class="line">class KNN:</span><br><span class="line">    x_train = []</span><br><span class="line">    x_pre = []</span><br><span class="line">    k = 0</span><br><span class="line">    def __init__(self,x_train,x_pre,k):</span><br><span class="line">        self.x_train = x_train</span><br><span class="line">        self.x_pre = x_pre</span><br><span class="line">        self.k = k</span><br><span class="line">        </span><br><span class="line">    def computeDis(self,x,y):</span><br><span class="line">        di = 0</span><br><span class="line">        for i in range(len(x)-1):</span><br><span class="line">           di += math.pow((x[i])-(y[i]),2) </span><br><span class="line">        return math.sqrt(di)</span><br><span class="line">    </span><br><span class="line">    def knnClassify(self):</span><br><span class="line">        pre_calss = []</span><br><span class="line">        for pre_data in self.x_pre:</span><br><span class="line">            dis = []</span><br><span class="line">            votes = &#123;&#125;</span><br><span class="line">            for tra_data in self.x_train:</span><br><span class="line">                dis.append(self.computeDis(pre_data,tra_data))</span><br><span class="line">            print(len(dis))</span><br><span class="line">            index = sorted(range(len(dis)),key=lambda m : dis[m])[:self.k]</span><br><span class="line">            print(index)</span><br><span class="line">            for i in index:</span><br><span class="line">                label = self.x_train[i][-1]</span><br><span class="line">                if label not in votes.keys():</span><br><span class="line">                    votes[label] = 1</span><br><span class="line">                else:</span><br><span class="line">                    votes[label] += 1</span><br><span class="line">            print(votes)</span><br><span class="line">            pre_calss.append(max(votes,key=votes.get))</span><br><span class="line">             </span><br><span class="line">        result,pre=self.pre_values(pre_calss)</span><br><span class="line">        return pre_calss,pre</span><br><span class="line">    def pre_values(self,pre_calss):</span><br><span class="line">        result = []</span><br><span class="line">        for i in range(len(self.x_pre)):</span><br><span class="line">            if pre_calss[i] == self.x_pre[i][-1]:</span><br><span class="line">                result.append(1)</span><br><span class="line">            else:</span><br><span class="line">                result.append(0)</span><br><span class="line">        return result,sum(result)/len(result)</span><br></pre></td></tr></table></figure>
+<h2 id="4-5-朴素贝叶斯（Naive-Bayes）"><a href="#4-5-朴素贝叶斯（Naive-Bayes）" class="headerlink" title="4.5 朴素贝叶斯（Naive Bayes）"></a>4.5 朴素贝叶斯（Naive Bayes）</h2><p><a href="https://blog.csdn.net/amds123/article/details/70173402" target="_blank" rel="noopener">详细讲解博客</a></p>
+<ul>
+<li>贝叶斯分类算法是统计学的一种分类方法，它是一类利用概率统计知识进行分类的算法。在许多场合，朴素贝叶斯(Naïve Bayes，NB)分类算法可以与决策树和神经网络分类算法相媲美，该算法能运用到大型数据库中，而且方法简单、分类准确率高、速度快。</li>
+<li>但由于对数据特征条件独立的强假设，所以如果数据集不符合这种假设，准确率可能会较低。</li>
+</ul>
+<p><strong>重要假设：类条件独立</strong></p>
+<p>X = 特征</p>
+<p>C = 类别</p>
+<p>$$<br>P(X|C_i)=\prod_{k=1}^{n}P(x_k|C_i)<br>$$<br>$$<br>P(C_i|X)=\frac{P(X|C_i)P(C_i)}{P(X)}=\frac{P(C_i)\prod_{k=1}^{n}P(X_i|C_i)}{P(X)}<br>$$</p>
+<p>$$<br>max(P(C_i|X))<br>$$</p>
+<ul>
+<li>优点：<ul>
+<li>算法逻辑简单,易于实现（算法思路很简单，只要使用贝叶斯公式转化即可！）</li>
+<li>分类过程中时空开销小（假设特征相互独立，只会涉及到二维存储</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>理论上，朴素贝叶斯模型与其他分类方法相比具有最小的误差率。但是实际上并非总是如此，<strong>这是因为朴素贝叶斯模型假设属性之间相互独立，这个假设在实际应用中往往是不成立的</strong>，在属性个数比较多或者属性之间相关性较大时，分类效果不好。 </li>
+</ul>
+</li>
+</ul>
+<h2 id="4-6-支持向量机-（Suppport-Vector-Machine）SVM"><a href="#4-6-支持向量机-（Suppport-Vector-Machine）SVM" class="headerlink" title="4.6 支持向量机 （Suppport Vector Machine）SVM"></a>4.6 支持向量机 （Suppport Vector Machine）SVM</h2><p><a href="https://blog.csdn.net/amds123/article/details/53696027" target="_blank" rel="noopener">参考博客</a></p>
+<ul>
+<li>支持向量机(Support Vector Machine)是Vapnik等于1995年首先提出的，它在解决<strong>小样本、非线性及高维模式识别</strong>中表现出许多特有的优势，并能够推广应用到函数拟合等其他机器学习问题中。</li>
+<li>SVM是建立在统计学习理论的<strong>VC 维理论</strong>和<strong>结构风险最小原理</strong>基础上的，根据有限的样本信息在<strong>模型的复杂性</strong>和<strong>学习能力</strong>之间寻求最佳折衷，以期获得最好的<strong>推广(泛化)能力</strong></li>
+</ul>
+<h4 id="结构风险最小化"><a href="#结构风险最小化" class="headerlink" title="结构风险最小化"></a>结构风险最小化</h4><ul>
+<li>所谓<strong>VC维</strong>是对函数类的一种度量，可以简单的理解为<strong>问题的复杂程度</strong>，VC维越高，一个问题就越复杂。</li>
+<li><strong>经验风险Remp(w)</strong>：分类器在样本数据上的分类的结果与真实结果（因为样本是已经标注过的数据，是准确的数据）之间的差值。</li>
+</ul>
+<p><strong>引入置信风险：</strong></p>
+<ol>
+<li>样本数量，给定的样本数量越大，学习结果越有可能正确，此时置信风险越小；</li>
+<li>分类函数的VC维，显然VC维越大，推广能力越差，置信风险会变大。</li>
+</ol>
+<p>R(w) ≤ Remp(w) + Ф(h, n)</p>
+<p>统计学习的目标从经验风险最小化变为了<strong>寻求经验风险与置信风险的和最小，即结构风险最小</strong>。</p>
+<p><strong>SVM-最大间隔化</strong>：我们要找到的线离两边的数据要有尽可能大的间隔，而这就是支持向量机最大间隔化的思想。</p>
+<p><strong>关于g(x)=wx+b这个表达式要注意三点</strong>：</p>
+<ol>
+<li>式中的x不是二维坐标系中的横轴，而是样本的向量表示。</li>
+<li>这个形式并不局限于二维的情况，在n维空间中仍然可以使用这个表达式，只是式中的w成为了n维向量；</li>
+<li>g(x)不是中间那条直线的表达式，中间那条直线的表达式是g(x)=0，即wx+b=0，我们也把这个函数叫做分类面。</li>
+</ol>
+<p><img alt="开发者自述：我是怎样理解支持向量机（SVM）与神经网络的" src="https://static.leiphone.com/uploads/new/article/740_740/201705/5927d68171f42.jpg?imageMogr2/format/jpg/quality/90"></p>
+<p>边界上的点就是支持向量，这些点很关键，这也是”支持向量机“命名的由来</p>
+<h4 id="SVM小结"><a href="#SVM小结" class="headerlink" title="SVM小结"></a>SVM小结</h4><ul>
+<li>线性不可分：<ul>
+<li>将数据空间映射到高维空间，使原本线性不可分变为线性可分；</li>
+<li>引入核函数，简化映射空间中的内积运算。它避开了直接在高维空间中进行计算，而表现形式却等价于高维空间；</li>
+<li>不同的样本结构与不同的核函数结合，达到很好的分割效果。</li>
+</ul>
+</li>
+<li>SVM只与少量支持向量相关，结构风险最小</li>
+</ul>
+<h2 id="4-7-人工神经网络（Artificial-Neural-Network）ANN-感知机-BP"><a href="#4-7-人工神经网络（Artificial-Neural-Network）ANN-感知机-BP" class="headerlink" title="4.7 人工神经网络（Artificial Neural Network）ANN + 感知机 + BP"></a>4.7 人工神经网络（Artificial Neural Network）ANN + 感知机 + BP</h2><h3 id="4-7-1-ANN"><a href="#4-7-1-ANN" class="headerlink" title="4.7.1 ANN"></a>4.7.1 ANN</h3><p><a href="https://blog.csdn.net/leiting_imecas/article/details/60463897" target="_blank" rel="noopener">参考资料</a></p>
+<ul>
+<li><p>人工神经网络（ANN，Artificial Neural Networks）是在人类对大脑神经网络认识理解的基础上，人工构造的能够实现某种功能的神经网络。</p>
+</li>
+<li><p>它是理论化的人脑神经网络的数学模型，是基于模仿大脑神经网络结构和功能而建立起来的一种信息处理系统。</p>
+</li>
+</ul>
+<p>人工神经元模型：是一个多输入单输出的非线性阈值器件</p>
+<p><img style="width: 640px;" src="http://images2015.cnblogs.com/blog/764050/201606/764050-20160619145050085-1140057304.jpg"></p>
+<ul>
+<li><p>神经网络结构和工作机理基本上是以人脑的组织结构和活动规律为背景的，它反映了脑的某些基本特征，但并不是要对人脑部分的真正实现，可以说它是某种抽象、简化或模仿。</p>
+</li>
+<li><p>如果将大量功能简单的形式神经元通过一定的拓扑结构组织起来，构成群体并行分布式处理的计算结构，那么这种结构就是人工神经网络，在不引起混淆的情况下，统称为神经网络。</p>
+</li>
+</ul>
+<p><img width="329" height="463" alt="" src="https://images2015.cnblogs.com/blog/673793/201512/673793-20151219151604318-1557737289.jpg"></p>
+<ul>
+<li><p>输入层:是网络与外部环境打交道的地方，它接收外部输入模式，并由输入单元传送给相连隐层各单元；</p>
+</li>
+<li><p>隐层:是网络的内部处理单元层，神经网络具有模式变换能力，如模式分类、模式完善、特征抽取等，主要体现在隐层单元的处理。根据模式变换功能的不同，隐层可以有多层，也可以没有。由于隐层单元不直接与外部输入输出打交道，故通常将中间层称为隐层；</p>
+</li>
+<li><p>输出层:是网络产生输出模式并与显示设备或执行机构打交道的地方。</p>
+</li>
+</ul>
+<p><strong>学习技术</strong></p>
+<p>权值修正学派认为：神经网络的学习过程就是不断调整网络的连接权，以获得期望的输出。如何调整权值即学习规则的研究是一个非常重要的课题。</p>
+<p>典型的权值修正方法：<strong>相关学习和误差修正学习。</strong></p>
+<ol>
+<li><p><strong>相关学习</strong>：其思想最早是由Hebb作为假设提出，并已得到神经细胞学说的证实，人们称之为Hebb（海布）学习规则。</p>
+<p> Hebb学习规则可描述为：如果神经网络中某一神经元与另一直接和其连接的神经元同时处于兴奋状态，那么，这两个神经元的连接强度应该加强。</p>
+<p> $W_{ji} (t + 1 ) = W_{ji} (t) + η[ X_i(t) X_j(t) ]$</p>
+<p> 式中，$W_{ji} (t + 1 )$表示修正一次后的某一权值；η是一个正常量，决定每次权值修正量，又称为学习因子；$X_i(t)$ 、$X_j(t)$分别表示t时刻第i、第j个神经元状态。</p>
+</li>
+</ol>
+<p>2) <strong>误差修正学习法:</strong> </p>
+<pre><code>是神经网络中另一类更重要的方法，像感知机学习、BP网络学习均属此类。
+</code></pre><p>   最基本的误差修正学习方法，即δ学习规则，由4步描述：</p>
+<pre><code>（1）选择一组初始权值Wji ( 0);
+
+（2）计算某一输入模式对应的实际输出与期望输出的误差；
+
+（3）更新权值：
+    $W_{ji} (t + 1) = W_{ji} (t) + η[ d_j -y_j(t) ] x_i(t)$
+  式中，η为学习因子；$d_j$、$y_j$分别表示第j个神经元的期望输出与实际输出；`$x_i$`为第j个神经元的输入。
+
+（4）返回步骤（2），直到对所有训练模式网络输出均能满足要求。
+</code></pre><h3 id="4-7-2-感知机模型"><a href="#4-7-2-感知机模型" class="headerlink" title="4.7.2 感知机模型"></a>4.7.2 感知机模型</h3><h4 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h4><ul>
+<li>感知机是人们为了研究大脑的存贮、学习和认识过程而提出的一种神经网络模型。</li>
+<li>基本感知机是一个两层网络，分为输入层和输出层，每层可由多个处理单元构成。输入层单元接收外部输入模式，并传递给相连的输出层单元；输出层单元对所有输入值加权求和，经阈值性传递函数产生一组输出模式。</li>
+<li>通常输入、输出模式用二进制表示。两层之间为全互连方式，即输入层各单元与输出层各单元均有连接，且两层之间的连接权值是可调的。</li>
+</ul>
+<h4 id="学习过程"><a href="#学习过程" class="headerlink" title="学习过程"></a>学习过程</h4><ul>
+<li>感知机的学习是典型的监督学习，可以通过训练达到学习目的。训练的要素有两个：训练集和训练规则。训练集是由若干个输入－输出模式对构成的一个集合，所谓输入－输出模式对是指一个输入模式及其期望输出模式所组成的向量对</li>
+<li>在训练期间，不断用训练集中的每个模式对训练网络。当给定某一训练模式时，感知机输出单元会输出一个实际输出向量，用期望输出与实际输出之差来修正网络连接权值。权值的更新采用最简单的δ学习规则。</li>
+</ul>
+<h4 id="感知机简单实现"><a href="#感知机简单实现" class="headerlink" title="感知机简单实现"></a>感知机简单实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">from random import randint</span><br><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line">class SimplePerceptron:</span><br><span class="line">    def __init__(self,train_data = [],real_result = [],eta=1):</span><br><span class="line">        self.w = np.zeros([1,len(train_data.T)],int)</span><br><span class="line">        self.b = 0</span><br><span class="line">        self.eta = eta</span><br><span class="line">        self.train_data = train_data</span><br><span class="line">        self.real_result = real_result</span><br><span class="line">    def nomalize(self,x):</span><br><span class="line">        if x&gt;0:</span><br><span class="line">            return 1</span><br><span class="line">        else:</span><br><span class="line">            return -1</span><br><span class="line">    def model(self,x):</span><br><span class="line">        #martrix dot multiply</span><br><span class="line">        y =np.dot(x,self.w.T)+self.b</span><br><span class="line">        predict_v = self.nomalize(y)</span><br><span class="line">        return predict_v,y</span><br><span class="line">    def update(self,x,y):</span><br><span class="line">        self.w = self.w+self.eta*y*x</span><br><span class="line">        self.b = self.b+self.eta*y</span><br><span class="line">    def loss(self,fx,y):</span><br><span class="line">        return fx.astype(int)*y</span><br><span class="line">    def train(self,count):</span><br><span class="line">        update_count = 0</span><br><span class="line">        while count &gt;0:</span><br><span class="line">            count -=1</span><br><span class="line">            </span><br><span class="line">            if len(self.train_data)&lt;=0:</span><br><span class="line">                print(&apos;Exception&apos;)</span><br><span class="line">                break</span><br><span class="line">            #random select train data</span><br><span class="line">            index = randint(0,len(self.train_data)-1)</span><br><span class="line">            x = self.train_data[index]</span><br><span class="line">            y = self.real_result.T[index]</span><br><span class="line">            </span><br><span class="line">            predict_v,linear_y_v =self.model(x)</span><br><span class="line">            if self.loss(y,linear_y_v)&gt;0:</span><br><span class="line">                continue</span><br><span class="line">            update_count = update_count+1</span><br><span class="line">            self.update(x,y)</span><br><span class="line">            #每训练500次，画出当前分类拟合出的曲线</span><br><span class="line">            if(update_count %500 == 0):</span><br><span class="line">                plt.plot(self.train_data.T[0].tolist()[0], </span><br><span class="line">                         -(np.array(self.train_data.T[0].tolist()[0]).dot(float(self.w.T[0]))</span><br><span class="line">                           +float(self.b))/float(self.w.T[1]), </span><br><span class="line">                         &apos;--&apos;,</span><br><span class="line">                         color=&apos;green&apos;,</span><br><span class="line">                         alpha=0.5)</span><br><span class="line">        print(&apos;update_count:&apos;,update_count)</span><br><span class="line">        pass</span><br><span class="line">    def verify(self,verify_data,verify_result):</span><br><span class="line">        size = len(verify_data)</span><br><span class="line">        failed_count = 0</span><br><span class="line">        if size &lt;= 0:</span><br><span class="line">            pass</span><br><span class="line">        for i in range(size):</span><br><span class="line">            x = verify_data[i]</span><br><span class="line">            y = verify_result.T[i]</span><br><span class="line">            if self.loss(y,self.model(x)[1])&gt;0:</span><br><span class="line">                continue</span><br><span class="line">            failed_count += 1</span><br><span class="line">        success_rate = (1.0-(float(failed_count)/size))*100</span><br><span class="line">        print(&apos;Success Rate:&apos;,success_rate,&apos;%&apos;)</span><br><span class="line">        print(&apos;All input:&apos;,size,&quot;failed_count:&quot;,failed_count)</span><br><span class="line">        </span><br><span class="line">    def predict(self,predict_data):</span><br><span class="line">        size = len(predict_data)</span><br><span class="line">        result = []</span><br><span class="line">        if size &lt;=0:</span><br><span class="line">            pass</span><br><span class="line">        for i in range(size):</span><br><span class="line">            x = perdict_data[i]</span><br><span class="line">            result.append(self.model(x)[0])</span><br><span class="line">        return result</span><br></pre></td></tr></table></figure>
+<h3 id="4-7-3-BP"><a href="#4-7-3-BP" class="headerlink" title="4.7.3 BP"></a>4.7.3 BP</h3><p>BP网络的产生归功于BP算法的获得。  BP算法属于δ算法，是一种监督式(有导师)的学习算法。</p>
+<p><strong>主要思想为</strong>：对于q个输入学习样本：  P1，P2…，Pq，已知与其对应的输出样本为：T1，T2…，Tq。<br>学习的目的是用网络的实际输出A1，A2…，Aq与目标矢量T1，T2…，Tq之间的<strong>误差来修改其权值</strong>，使Ai，(i＝1，2…，q)与期望的Ti尽可能地接近；即：<strong>使网络输出层的误差平方和达到最小</strong>。</p>
+<ul>
+<li>它是通过连续不断地在相对于误差函数斜率下降的方向上计算网络权值和偏差的变化而逐渐逼近目标的。</li>
+<li>每一次权值和偏差的变化都与网络误差的影响成正比，并以反向传播的方式传递到每一层的。</li>
+<li>正向传播:输入信息从输入经隐含层逐层计算传向输出层，每一层神经元的状态只影响下一层神经元的状态。</li>
+<li>误差的反向传播：如果在输出层没有得到期望的输出，则计算输出层的误差变化值，然后转向反向传播，通过网络将误差信号沿原来的连接通路反传回来修改各层神经元的权值直至达到期望目标。</li>
+</ul>
+<p><a href="https://www.jianshu.com/p/c5cda5a52ee4" target="_blank" rel="noopener">推导连接</a></p>
+<h4 id="python实现简单BP"><a href="#python实现简单BP" class="headerlink" title="python实现简单BP"></a>python实现简单BP</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">def nonlin(x,derive=False):</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    实现sigmoid函数，deriv为Ture返回求导结果</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    if(derive==True):</span><br><span class="line">        return(x*(1-x))</span><br><span class="line">    return(1/(1+np.exp(-x)))</span><br><span class="line">    </span><br><span class="line">X=np.array([[0,0,1],[0,1,1],[1,0,1],[1,1,1]])</span><br><span class="line">y = np.array([[0,0,1,1]]).T</span><br><span class="line">np.random.seed(1)</span><br><span class="line">syn0=np.random.normal(size=(3,1))</span><br><span class="line"></span><br><span class="line">for iter in range(1000):</span><br><span class="line">    l0=X</span><br><span class="line">    l1=nonlin(np.dot(l0,syn0))</span><br><span class="line">    </span><br><span class="line">    l1_loss = y-l1 #损失函数</span><br><span class="line">    </span><br><span class="line">    l1_delta = l1_loss*nonlin(l1,True) </span><br><span class="line">    </span><br><span class="line">    syn0 += np.dot(l0.T,l1_delta)# 更新权值</span><br><span class="line">&apos;&apos;&apos;    </span><br><span class="line">l1=array([[0.03210593],</span><br><span class="line">       [0.02569687],</span><br><span class="line">       [0.97917487],</span><br><span class="line">       [0.97394839]])</span><br><span class="line">&apos;&apos;&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="4-8-集成学习"><a href="#4-8-集成学习" class="headerlink" title="4.8 集成学习"></a>4.8 集成学习</h2><blockquote>
+<p><strong>集成学习</strong> (ensemble learning) 通过构建并结合多个学习器来完成学习任务。 集成学习的一般结构：先产生一组“个体学习器” (individual learner)，再用某种策略将它们结合。若集成中只包含同种类型的个体学习器，这样的集成是“同质的” (homogeneous)，同质集成中的个体学习器称为“基学习器” (base learner)，相应的学习算法称为“基学习算法” (base learning algorithm)。集成也可以包含不同类型的个体学习器，即“异质的” (heterogenous)。</p>
+</blockquote>
+<blockquote>
+<p>集成学习通过将多个学习器进行结合，通常可以获得比单一学习器显著优越的泛化性能。这对“弱学习器” (weak learner) 尤为明显。实际中，要获得好的集成，个体学习器通常应该“好二不同”，即个体学习器要有一定的“<strong>准确性</strong>”，并且要有“<strong>多样性</strong>”，即学习器间具有差异。</p>
+</blockquote>
+<h3 id="4-8-1-Bagging-随机森林就是其一个应用"><a href="#4-8-1-Bagging-随机森林就是其一个应用" class="headerlink" title="4.8.1 Bagging(随机森林就是其一个应用)"></a>4.8.1 Bagging(随机森林就是其一个应用)</h3><ul>
+<li><strong>基本思想</strong>：给定包含 m个样本的数据集，先随机取出一个样本放入采样集，<strong>再把该样本放回初始数据集</strong>，使得下次采样时该样本仍有可能被选中，经过 m 次随机采样，得到含 m 个样本的采样集，初始训练集中有的样本在采样集多次出现，有的则从未出现。这样可采样出 T 个含 m 个训练样本的采样集，然后基于每个采样集训练出一个基学习器，再将这些基学习器结合。这就是 Bagging 的基本流程。</li>
+<li>对预测输出进行结合时，Bagging 通常对分类任务使用简单投票法，对回归任务使用简单平均法。</li>
+<li>由于Bagging算法每次都进行采样来训练模型，因此泛化能力很强，对于降低模型的方差很有作用。当然对于训练集的拟合程度就会差一些，也就是模型的偏倚会大一些。</li>
+</ul>
+<h3 id="4-8-2-Boosting"><a href="#4-8-2-Boosting" class="headerlink" title="4.8.2 Boosting"></a>4.8.2 Boosting</h3><ul>
+<li><strong>基本思想</strong>：Boosting 是一族可将弱学习器提升为强学习器的算法：先从初始训练集训练出一个基学习器，再根据基学习器的表现对训练样本进行调整，使得先前基学习器做错的训练样本在后续受到更多的关注，然后基于调整后的样本训练下一个基学习器，如此重复进行，直至基学习器达到事先指定的值，最终将这 T 个基学习器进行加权结合。</li>
+</ul>
+<h3 id="4-8-3-Stacking"><a href="#4-8-3-Stacking" class="headerlink" title="4.8.3 Stacking"></a>4.8.3 Stacking</h3><ul>
+<li><strong>基本思想</strong>：Stacking先从初始数据集训练出初级学习器，然后生成一个新数据集用于训练次级学习器。在这个新数据集中，初级学习器的输出被当作样例输入特征，而初始样本的标记仍被当作样例标记</li>
+</ul>
+<h2 id="4-9-分类器的评价标准"><a href="#4-9-分类器的评价标准" class="headerlink" title="4.9 分类器的评价标准"></a>4.9 分类器的评价标准</h2><table>
+<thead>
+<tr>
+<th>A\Pr</th>
+<th>C</th>
+<th>-C</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C</td>
+<td>TP</td>
+<td>FN</td>
+<td>P</td>
+</tr>
+<tr>
+<td>-C</td>
+<td>FP</td>
+<td>TN</td>
+<td>N</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>p’</td>
+<td>N’</td>
+<td>ALL</td>
+</tr>
+</tbody>
+</table>
+<pre><code>A : 实际的类
+
+Pr : 预测的类
+
+TP：真正例，被正确分类的正样本
+
+TN：真负例，被正确分类的负样本
+
+FP：假正例，被错误分类的负样本
+
+FN：假负例，被错误分类的正样本
+
+P：正样本数；   N：负样本数
+
+P&apos;：被分类器标记为正的样本数
+
+N&apos;：被分类器标记为负的样本数
+</code></pre><ul>
+<li><p>准确度：$Accuracy=\frac{TP+TN}{ALL}$</p>
+</li>
+<li><p>误差率：$Error rate = \frac{FP+FN}{ALL}=1-ACC$</p>
+</li>
+<li><p>精度：被分类器标记为正类的样本实际为“正类”的比例$precision=\frac{TP}{TP+FP}$</p>
+</li>
+<li><p>召回率：正样本标记为正的百分比$recall = \frac{TP}{TP+FN}$</p>
+</li>
+<li><p>F 度量：精度和召回率的调和平均值$F=\frac{2\times precision \times recall}{precision+recall}$</p>
+</li>
+</ul>
+<h5 id="类分布不平衡的问题"><a href="#类分布不平衡的问题" class="headerlink" title="类分布不平衡的问题"></a>类分布不平衡的问题</h5><ul>
+<li>灵敏度：正确识别的正样本的百分比$\frac{TP}{P}$</li>
+<li>特效性：正确识别的负样本的百分比$\frac{TN}{N}$</li>
+</ul>
+<h1 id="Chapter-5-聚类分析（Cluster-Analysis）"><a href="#Chapter-5-聚类分析（Cluster-Analysis）" class="headerlink" title="Chapter 5 聚类分析（Cluster Analysis）"></a>Chapter 5 聚类分析（Cluster Analysis）</h1><h2 id="5-1-认识聚类"><a href="#5-1-认识聚类" class="headerlink" title="5.1 认识聚类"></a>5.1 认识聚类</h2><ul>
+<li>聚类就是将数据分为多个簇，使得在同一个簇内对象之间具有较高的相似度，而不同簇之间的对象差别较大</li>
+<li>探索数据内部潜在的自然分组结构</li>
+<li>无监督学习</li>
+<li>聚类分析的意义<ul>
+<li><strong>聚类分析是获得数据内部结构的有效方法</strong>。通过观察聚类得到的每个簇的特点，可以集中对特定的某些簇作进一步分析。这在诸如市场细分、目标顾客定位、业绩估评、生物种群划分、城市规划等方面具有广阔的应用前景。</li>
+<li><strong>聚类分析可以作为其它算法的预处理步骤</strong>：利用聚类进行数据预处理，可以获得数据的基本概况，在此基础上进行特征抽取或分类就可以提高精确度和挖掘效率。也可将聚类结果用于进一步关联分析，以获得进一步的有用信息。</li>
+<li><strong>聚类分析可以完成噪声点/孤立点的挖掘</strong>：许多数据挖掘算法试图使孤立点影响最小化，或者排除它们。然而孤立点本身可能是非常有用的。如在欺诈探测中，孤立点可能预示着欺诈行为的存在。许多聚类分析算法都具有噪声点检测的功能。</li>
+</ul>
+</li>
+<li>聚类分析的目的：寻找数据中潜在的自然分组结构</li>
+</ul>
+<h3 id="5-1-1-聚类算法分类"><a href="#5-1-1-聚类算法分类" class="headerlink" title="5.1.1 聚类算法分类"></a>5.1.1 聚类算法分类</h3><ul>
+<li>划分方法（partitioning method）</li>
+<li>层次方法（hierarchical method）</li>
+<li>基于密度的方法（density-based method）</li>
+<li>基于网格的方法（grid-based method）</li>
+</ul>
+<h4 id="划分方法"><a href="#划分方法" class="headerlink" title="划分方法"></a>划分方法</h4><ul>
+<li>给定一个有n个对象的数据集，划分聚类技术将构造数据k个划分，每一个划分就代表一个簇，k&lt;=n。也就是说，它将数据划分为k个簇，而且这k个划分满足下列条件：<ul>
+<li>每一个簇至少包含一个对象。</li>
+<li>每一个对象属于且仅属于一个簇</li>
+</ul>
+</li>
+<li><strong>基本思路</strong>：对于给定的k，算法首先给出一个初始的划分方法，以后通过反复迭代的方法改变划分，使得每一次改进之后的划分方案都较前一次更好。经典的算法有：K-Means（K-均值）, K-Medoids（K-中心点）等 。</li>
+</ul>
+<h5 id="K-means"><a href="#K-means" class="headerlink" title="K-means"></a>K-means</h5><ul>
+<li>目标：将数据集D划分为K个互不相容的簇，使得簇内对象互相相似，簇之间差异大</li>
+<li>聚类目标函数：簇对象到簇中心平方误差准则最小<ul>
+<li>$E=\sum_{i=1}^{k}\sum_{x\in C_i}{|x-x_i|}^2$</li>
+<li>$x_i$为第i个簇的均值，$C_i$代表第i个簇</li>
+</ul>
+</li>
+<li><p>简单实现过程</p>
+<pre><code>随机选择K个点作为初始质心  
+repeat  
+    将每个点指派到最近的质心，形成K个簇  
+    重新计算每个簇的质心  
+until 簇不发生变化或达到最大迭代次数 
+</code></pre></li>
+<li>优点<ul>
+<li>经典算法、简单、快速</li>
+<li>对处理大数据，该算法是相对可伸缩和高效率的</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>必须事先给出k</li>
+<li>对初值敏感，不同的初始值，可能会导致不同的结果</li>
+<li>不适合于发现非球形状的簇或者大小差别很大的簇</li>
+<li>对于“噪声”和孤立点是敏感的</li>
+</ul>
+</li>
+<li>python实现代码：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line">class KMeansCluster():</span><br><span class="line">    def __init__(self,k=3,initCent=&apos;random&apos;,max_iter=500):</span><br><span class="line">        self._k = k</span><br><span class="line">        self._initCent = initCent</span><br><span class="line">        self._max_iter = max_iter</span><br><span class="line">        self._clusterAssment = None</span><br><span class="line">        self._labels = None</span><br><span class="line">    #计算欧式距离  </span><br><span class="line">    def _calEDist(self,arrA,arrB):</span><br><span class="line">        return np.math.sqrt(sum(np.power(arrA - arrB, 2)))</span><br><span class="line">    #随机选择K个中心点</span><br><span class="line">    def _randCent(self,data_X,k):</span><br><span class="line">        n = data_X.shape[1]</span><br><span class="line">        centroids = np.empty((k,n))</span><br><span class="line">        for j in range(n):</span><br><span class="line">            minJ = min(data_X[:,j])</span><br><span class="line">            rangeJ = float(max(data_X[:,j]-minJ))</span><br><span class="line">            centroids[:,j] = (minJ+rangeJ*np.random.rand(k,1)).flatten()</span><br><span class="line">        return centroids</span><br><span class="line">    #更新聚类中心点直到收敛</span><br><span class="line">    def fit(self,data_X):</span><br><span class="line">        if not isinstance(data_X,np.ndarray) or isinstance(data_X,np.matrixlib.defmatrix.matrix):</span><br><span class="line">            try:</span><br><span class="line">                data_X = np.asarray(data_X)</span><br><span class="line">            except:</span><br><span class="line">                raise TypeError(&apos;numpy.darray resuird for data_X&apos;)</span><br><span class="line">        m = data_X.shape[0]</span><br><span class="line">        #一个m*2的二维矩阵，矩阵第一列存储样本点所属的族的索引值，</span><br><span class="line">        #第二列存储该点与所属族的质心的平方差</span><br><span class="line">        self._clusterAssment = np.zeros((m,2))</span><br><span class="line">        </span><br><span class="line">        if self._initCent == &apos;random&apos;:</span><br><span class="line">            self._centroids = self._randCent(data_X,self._k)</span><br><span class="line">        </span><br><span class="line">        clusterChanged = True</span><br><span class="line">        for _ in range(self._max_iter):</span><br><span class="line">            clusterChanged = False</span><br><span class="line">            for i in range(m):#将每个样本点分配到离它最近的质心所属的族</span><br><span class="line">                minDist = np.inf #首先将其置为无穷大的数</span><br><span class="line">                minIndex = -1 #将最近的质心点下标置为-1</span><br><span class="line">                for j in range(self._k):</span><br><span class="line">                    arrA = self._centroids[j,:]</span><br><span class="line">                    arrB = data_X[i,:]</span><br><span class="line">                    distJI = self._calEDist(arrA,arrB)</span><br><span class="line">                    if distJI&lt;minDist:</span><br><span class="line">                        minDist = distJI</span><br><span class="line">                        minIndex = j</span><br><span class="line">                if self._clusterAssment[i,0]!=minIndex or self._clusterAssment[i,1]&gt;minDist**2:</span><br><span class="line">                    clusterChanged = True </span><br><span class="line">                    self._clusterAssment[i,:]=minIndex,minDist**2</span><br><span class="line">            if not clusterChanged:</span><br><span class="line">                break</span><br><span class="line">            for i in range(self._k):</span><br><span class="line">                index_all = self._clusterAssment[:,0]</span><br><span class="line">                value = np.nonzero(index_all == i)</span><br><span class="line">                ptsInClust = data_X[value[0]]</span><br><span class="line">                self._centroids[i,:]=np.mean(ptsInClust,axis=0)</span><br><span class="line">        self._labels =self._clusterAssment[:,0]</span><br></pre></td></tr></table></figure>
+<h5 id="K—中心点（K-medoids）"><a href="#K—中心点（K-medoids）" class="headerlink" title="K—中心点（K-medoids）"></a>K—中心点（K-medoids）</h5><ul>
+<li>出发点：利用代表性的对象（中心点），而不是均值代表每个簇,又称PAM算法（Partitioning Around Medoids）</li>
+<li>基本思路<ol>
+<li>为每个簇随机选择一个代表对象(中心点)；<ol start="2">
+<li>剩余的对象根据其与代表对象的距离分配给与其最近的一个簇；</li>
+<li>反复地用非代表对象来替换代表对象，以提高聚类的质量，直至找到最合适的中心点。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>我们要选取一个最小的代价，显然有多种替换可以选择，选择第一个最小代价的替换，一直重复上述过程，直到代价不再减小为止。</li>
+<li>优点：相比于K-means，对于孤立点数据没有那么敏感</li>
+<li>缺点：时间复杂度很高，很难处理大规模数据</li>
+</ul>
+<h4 id="层次聚类方法"><a href="#层次聚类方法" class="headerlink" title="层次聚类方法"></a>层次聚类方法</h4><ul>
+<li>层次聚类方法对给定的数据集进行层次的分解，直到某种条件满足为止。具体又可分为：<ul>
+<li><strong>凝聚的层次聚类</strong>：一种自底向上的策略，首先将每个对象作为一个簇，然后合并这些原子簇为越来越大的簇，直到某个终结条件被满足。（AGNES算法）</li>
+<li><strong>分裂的层次聚类</strong>：采用自顶向下的策略，它首先将所有对象置于一个簇中，然后逐渐细分为越来越小的簇，直到达到了某个终结条件。（DIANA算法）</li>
+</ul>
+</li>
+<li>AGNES：AGNES (AGglomerative NESting)算法最初将每个对象作为一个簇，然后这些簇根据某些准则被一步步地合并。两个簇间的相似度由这两个不同簇中距离最近的数据点对的相似度来确定。聚类的合并过程反复进行直到所有的对象最终满足簇数目。</li>
+<li>DIANA：是典型的分裂聚类方法。<br>在聚类中，用户能定义希望得到的簇数目作为一个结束条件。同时，它使用下面两种测度方法：<ul>
+<li>簇的直径：在一个簇中的任意两个数据点的距离中的最大值。</li>
+<li>平均相异度（平均距离）：</li>
+</ul>
+</li>
+</ul>
+<h4 id="基于密度的聚类方法"><a href="#基于密度的聚类方法" class="headerlink" title="基于密度的聚类方法"></a>基于密度的聚类方法</h4><ul>
+<li>密度聚类方法的指导思想是，只要一个区域中的点的密度大于某个阈值，就把它加到与之相近的聚类中去。这类算法能克服基于距离的算法只能发现“类圆形”的聚类的缺点，可发现任意形状的聚类，且对噪声数据不敏感。但计算密度单元的计算复杂度大，需要建立空间索引来降低计算量，且对数据维数的伸缩性较差。这类方法需要扫描整个数据库，每个数据对象都可能引起一次查询，因此当数据量大时会造成频繁的I/O操作。代表算法有：DBSCAN、OPTICS、DENCLUE算法等。 </li>
+</ul>
+<h5 id="DBSCAN"><a href="#DBSCAN" class="headerlink" title="DBSCAN"></a>DBSCAN</h5><ul>
+<li><p>DBSCAN（Density-Based Spatial Clustering of Applications with Noise）一个比较有代表性的基于密度的聚类算法。与划分和层次聚类方法不同，它将簇定义为密度相连的点的最大集合，能够把具有足够高密度的区域划分为簇。</p>
+</li>
+<li><p>DBSCAN算法可以利用类的高密度连通性，快速发现任意形状的类</p>
+<ul>
+<li>在一个数据空间中，高密度区总是被低密度区所分割</li>
+<li>它能够从含有噪音的空间数据中发现任意形状的聚类</li>
+</ul>
+</li>
+<li><strong>基本思想</strong><ul>
+<li>对于一个类中的每个对象，在其给定半径的领域中包含的对象不能少于某一给定的最小数目</li>
+<li>在DBSCAN中，发现一个类的过程是基于这样的事实：一个类能够被其中的任意一个核心对象所确定</li>
+</ul>
+</li>
+<li><strong>基本定义</strong><ul>
+<li><strong>对象的ε-邻域</strong>：给定对象在半径ε内的区域</li>
+<li><strong>核心对象</strong>：如果一个对象的ε-邻域至少包含最小数目MinPts个对象，则称该对象为核心对像</li>
+<li><strong>直接密度可达</strong>：给定一个对象集合D，如果p是在q的ε-邻域内，而q是一个核心对象，我们说对象p从对象q出发是直接密度可达的</li>
+<li><strong>密度可达</strong>：如果存在一个对象链p1，p2，…，pn，p1=q，pn=p，对pi∈D，（1&lt;=i&lt;=n），pi+1是从pi关于ε和MitPts直接密度可达的，则对象p是从对象q关于ε和MinPts密度可达的。</li>
+<li><strong>密度相连</strong>：如果对象集合D中存在一个对象o，使得对象p和q是从o关于ε和MinPts密度可达的，那么对象p和q是关于ε和MinPts密度相连的。</li>
+<li><strong>噪声</strong>：一个基于密度的簇是基于密度可达性的最大的密度相连对象的集合。不包含在任何簇中的对象被认为是“噪声”。 </li>
+</ul>
+</li>
+</ul>
+<p><strong>举例</strong><br><img src="https://upload-images.jianshu.io/upload_images/1500965-96cd4ecd1f413272.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="image"></p>
+<p>由上图可看出m,p,o.r 都是核心对象，因为他们的内都只是包含3个对象。</p>
+<ol>
+<li><p>对象q是从m直接密度可达的。对象m从p直接密度可达的。</p>
+</li>
+<li><p>对象q是从p（间接）密度可达的,因为q从m直接密度可达，m从p直接密度可达。</p>
+</li>
+<li><p>r和s是从o密度可达的，而o是从r密度可达的，所有o,r和s都是密度相连的。</p>
+</li>
+</ol>
+<ul>
+<li><strong>基本流程</strong>：DBSCAN通过检查数据集中每个对象的ε-邻域来寻找聚类。如果一个点p的ε-邻域包含多于MinPts个对象，则创建一个p作为核心对象的新簇。然后，DBSCAN反复地寻找从这些核心对象直接密度可达的对象，这个过程可能涉及一些密度可达簇的合并。当没有新的点可以被添加到任何簇时，该过程结束。具体如下：</li>
+</ul>
+<pre><code>DBSCAN算法描述
+算法5-5 DBSCAN  
+输入：包含n个对象的数据库，半径ε，最少数目MinPts。
+输出：所有生成的簇，达到密度要求。
+1. REPEAT
+2. 从数据库中抽取一个未处理过的点；
+3. IF 抽出的点是核心点 THEN找出所有从该点密度可达的对象，形成一个簇
+4. ELSE 抽出的点是边缘点(非核心对象)，跳出本次循环，寻找下一点；
+5. UNTIL 所有点都被处理；
+</code></pre><p><strong>Eg:</strong><br>下面给出一个样本事务数据库（见左表），对它实施DBSCAN算法。<br>根据所给的数据通过对其进行DBSCAN算法，以下为算法的步骤（设n=12，用户输入ε=1，MinPts=4） 　</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>x</th>
+<th>y</th>
+<th></th>
+<th>步骤</th>
+<th>选择的点</th>
+<th>在ε中的点数</th>
+<th>通过计算可达的点而找到的新簇</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td></td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>无</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>0</td>
+<td></td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>无</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>1</td>
+<td></td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>无</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>4</td>
+<td>4</td>
+<td>5</td>
+<td>簇$C_1$:{1,3,4,5,9,10,12}</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2</td>
+<td>1</td>
+<td></td>
+<td>5</td>
+<td>5</td>
+<td>3</td>
+<td>已在$C_1$中</td>
+</tr>
+<tr>
+<td>6</td>
+<td>3</td>
+<td>1</td>
+<td></td>
+<td>6</td>
+<td>6</td>
+<td>3</td>
+<td>无</td>
+</tr>
+<tr>
+<td>7</td>
+<td>4</td>
+<td>1</td>
+<td></td>
+<td>7</td>
+<td>7</td>
+<td>5</td>
+<td>簇$C_2$:{2,6,7,8,11}</td>
+</tr>
+<tr>
+<td>8</td>
+<td>5</td>
+<td>1</td>
+<td></td>
+<td>8</td>
+<td>8</td>
+<td>2</td>
+<td>已在$C_2$中</td>
+</tr>
+<tr>
+<td>9</td>
+<td>0</td>
+<td>2</td>
+<td></td>
+<td>9</td>
+<td>9</td>
+<td>3</td>
+<td>已在$C_1$中</td>
+</tr>
+<tr>
+<td>10</td>
+<td>1</td>
+<td>2</td>
+<td></td>
+<td>10</td>
+<td>10</td>
+<td>4</td>
+<td>已在$C_1$中</td>
+</tr>
+<tr>
+<td>11</td>
+<td>4</td>
+<td>2</td>
+<td></td>
+<td>11</td>
+<td>11</td>
+<td>2</td>
+<td>已在$C_2$中</td>
+</tr>
+<tr>
+<td>12</td>
+<td>1</td>
+<td>3</td>
+<td></td>
+<td>12</td>
+<td>12</td>
+<td>2</td>
+<td>已在$C_1$中</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>第1步，在数据库中选择一点1，由于在以它为圆心的，以1为半径的圆内包含2个点（小于4），因此它不是核心点，选择下一个点。</li>
+<li>第2步，在数据库中选择一点2，由于在以它为圆心的，以1为半径的圆内包含2个点，因此它不是核心点，选择下一个点。</li>
+<li>第3步，在数据库中选择一点3，由于在以它为圆心的，以1为半径的圆内包含3个点，因此它不是核心点，选择下一个点。</li>
+<li>第4步，在数据库中选择一点4，由于在以它为圆心的，以1为半径的圆内包含5个点，因此它是核心点，寻找从它出发可达的点（直接可达4个，间接可达2个），聚出的新类{1，3，4，5，9，10，12}，选择下一个点。</li>
+<li>第5步，在数据库中选择一点5，已经在簇1中，选择下一个点。</li>
+<li>第6步，在数据库中选择一点6，由于在以它为圆心的，以1为半径的圆内包含3个点，因此它不是核心点，选择下一个点。</li>
+<li>第7步，在数据库中选择一点7，由于在以它为圆心的，以1为半径的圆内包含5个点，因此它是核心点，寻找从它出发可达的点，聚出的新类{2，6，7，8，11}，选择下一个点。 </li>
+<li>第8步，在数据库中选择一点8，已经在簇2中，选择下一个点。</li>
+<li>第9步，在数据库中选择一点9，已经在簇1中，选择下一个点。</li>
+<li>第10步，在数据库中选择一点10，已经在簇1中，选择下一个点。</li>
+<li>第11步，在数据库中选择一点11，已经在簇2中，选择下一个点。</li>
+<li>第12步，选择12点，已经在簇1中，由于这已经是最后一点所有点都已处理，程序终止。</li>
+</ol>
+<ul>
+<li>优点<ul>
+<li>可以发现任意形状的簇</li>
+<li>对噪声数据不敏感</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>对参数EPS和Minspt非常敏感，但这两个参数主要是依靠主观判断</li>
+<li>数据库比较大的时候，会进行大量的I/O开销</li>
+</ul>
+</li>
+</ul>
+<h4 id="网格聚类"><a href="#网格聚类" class="headerlink" title="网格聚类"></a>网格聚类</h4><ul>
+<li><strong>基本思想</strong>：将对象空间量化为有限数目的单元，形成一个网格结构，所有的聚类都在这个网格结构中上进行。</li>
+<li>其优点是处理速度很快，其处理时间独立于数据对象的数目，只与量化空间中每一维的单元数目有关。</li>
+<li>在网格聚类方法中有利用存储在网格单元中的统计信息进行聚类的STING算法和在高维数据空间基于网格和密度的聚类方法等。</li>
+</ul>
+<h5 id="STING算法"><a href="#STING算法" class="headerlink" title="STING算法"></a>STING算法</h5><ul>
+<li>STING(Statistaical Information Grid_based method)是一种基于网格的多分辨率聚类技术，它将空间区域划分为矩形单元。针对不同级别的分辨率，通常存在多个级别的矩形单元，这些单元形成了一个层次结构：高层的每个单元被划分为多个低一层的单元。高层单元的统计参数可以很容易的从底层单元的计算得到。这些参数包括属性无关的参数count、属性相关的参数m（平均值）、s(标准偏差)、min(最小值)、max(最大值)以及该单元中属性值遵循的分布类型。</li>
+<li>STING算法采用了一种多分辨率的方法来较粗，则聚类质量会受到影响。进行聚类分析，该聚类算法的质量取决于网格结构最低层的粒度。如果粒度比较细，处理的代价会显著增加；但如果粒度</li>
+</ul>
+<h3 id="离群点（孤立点）检测"><a href="#离群点（孤立点）检测" class="headerlink" title="离群点（孤立点）检测"></a>离群点（孤立点）检测</h3><p><a href="https://blog.csdn.net/littlely_ll/article/details/68486537" target="_blank" rel="noopener">参考</a></p>
+<ul>
+<li>离群点是一个数据对象，它显著不同于其它数据对象，好像它是被不同的机制产生的一样</li>
+<li>离群点类型<ul>
+<li>全局离群点：给定数据集中，如果它显著偏离数据集中的其余对象，则成为全局离群点。</li>
+<li>局部离群点（又称情景离群点）：在给定数据集中，如果关于对象的特定情境，它显著偏离其他对象，则称为情景离群点。</li>
+<li>集体离群点：在给定数据集中，如果这些对象作为整体显著偏离整个数据集，则数据集的这个子集为集体离群点</li>
+</ul>
+</li>
+<li><p>在有些应用领域识别异常数据是许多工作的基础和前提，异常数据会带给我们新的视角。 如在欺诈检测中，异常数据可能意味欺诈行为的发生，在入侵检测中异常数据可能意味入侵行为的发生。</p>
+</li>
+<li><p>离群点分析</p>
+<ul>
+<li>统计学方法</li>
+<li>基于距离的方法</li>
+<li>基于偏差的方法</li>
+<li>基于密度的方法</li>
+</ul>
+</li>
+</ul>
+<h4 id="基于统计学的孤立点检测"><a href="#基于统计学的孤立点检测" class="headerlink" title="基于统计学的孤立点检测"></a>基于统计学的孤立点检测</h4><ul>
+<li><strong>基本思想</strong>：对给定的数据集合假设了一个分布或概率模型(例如, 正态分布), 然后根据模型采用不一致性检验(discordancy test)来确定孤立点 </li>
+<li><p>检验要求的参数</p>
+<ul>
+<li>数据集参数：例如，假设的数据分布</li>
+<li>分布参数：例如平均值和方差</li>
+<li>和预期的孤立点数目</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>绝大多数检验是针对单个属性的, 而许多数据挖掘问题要求在多维空间中发现孤立点 </li>
+<li>统计学方法要求关于数据集合参数的知识(如, 数据分布), 但是在许多情况下, 数据分布可能是未知的 </li>
+<li>当没有特定的检验时, 统计学方法不能确保所有的孤立点被发现; 或者观察到的分布不能恰当地被任何标准的分布来模拟 </li>
+</ul>
+</li>
+</ul>
+<h4 id="基于距离的孤立点检测"><a href="#基于距离的孤立点检测" class="headerlink" title="基于距离的孤立点检测"></a>基于距离的孤立点检测</h4><ul>
+<li>基于距离的孤立点:  DB (p, d)-孤立点是数据集T 中的一个对象o, 使得 T 中的对象至少有p 部分与o 的距离大于d。</li>
+<li>将基于距离的孤立点看作是那些没有“足够多”邻居的对象. 这里的邻居是基于距给定对象的距离来定义的 。</li>
+<li>对许多不一致性检验来说, 如果一个对象 o根据给定的检验是一个孤立点, 那么对恰当定义的p和d，o也是一个DB(p,d) 孤立点。</li>
+</ul>
+<h4 id="基于偏离的孤立点检测"><a href="#基于偏离的孤立点检测" class="headerlink" title="基于偏离的孤立点检测"></a>基于偏离的孤立点检测</h4><ul>
+<li>基本思想：通过检查一组对象的主要特征来确定孤立点 ，如果与给出的描述偏离大的对象被认为是孤立点 。</li>
+</ul>
+<h4 id="基于密度的方法"><a href="#基于密度的方法" class="headerlink" title="基于密度的方法"></a>基于密度的方法</h4><h1 id="Chapter-6-大数据分析"><a href="#Chapter-6-大数据分析" class="headerlink" title="Chapter 6 大数据分析"></a>Chapter 6 大数据分析</h1><h2 id="6-1-哈希技术"><a href="#6-1-哈希技术" class="headerlink" title="6.1 哈希技术"></a>6.1 哈希技术</h2><ul>
+<li>大数据挖掘面临的一些问题<ul>
+<li>高维诅咒</li>
+<li>存储</li>
+<li>检索速度</li>
+</ul>
+</li>
+<li><a href="https://www.jianshu.com/p/b70ff7ba6822" target="_blank" rel="noopener">局部敏感哈希（LSH ）</a></li>
+<li><a href="https://www.cnblogs.com/sddai/p/6110704.html" target="_blank" rel="noopener">最小哈希</a></li>
+</ul>
+<h3 id="数据流挖掘"><a href="#数据流挖掘" class="headerlink" title="数据流挖掘"></a>数据流挖掘</h3><ul>
+<li>什么是数据流：是数据对象的大量序列，有以下特征<ul>
+<li>一个接一个（One by One）</li>
+<li>潜在的无限的（Potentially Unbounded）</li>
+<li>概念偏移（Concept Drift）</li>
+</ul>
+</li>
+<li>数据流挖掘的挑战<ul>
+<li>时间，空间维度的简单实时</li>
+<li>概念漂移</li>
+</ul>
+</li>
+<li><strong><a href="http://www.jsjkx.com/jsjkx/ch/reader/create_pdf.aspx?file_no=20161204&amp;flag=&amp;journal_id=jsjkx&amp;year_id=2016" target="_blank" rel="noopener">概念漂移</a></strong>：基于数据的类别变化（P（C|X））</li>
+<li><strong>概念漂移检测</strong>：<ul>
+<li>基于分布的检测（Distribution-based detector）：监视数据在两个固定窗口或自适应窗口之间的分布变化，但很难决定窗口的大小，学习概念漂移会很慢</li>
+<li>基于错误率（Error-rate based detector）：基于分类性能变化的捕获概念漂移，但对噪声敏感，难以处理渐进缓慢的概念漂移，太对依靠模型自身</li>
+</ul>
+</li>
+<li>数据流分类<ul>
+<li>要求：1.数据只处理一次。2.随时准备预测。3.用有限的内存。4.工作在有限的时间</li>
+<li>VFDT</li>
+</ul>
+</li>
+<li><strong><a href="https://www.cnblogs.com/jean925/p/8963512.html" target="_blank" rel="noopener">数据流聚类</a></strong></li>
+</ul>
+<h3 id="Hadoop-Spark"><a href="#Hadoop-Spark" class="headerlink" title="Hadoop/Spark"></a>Hadoop/Spark</h3><h4 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h4><ul>
+<li>Hadoop is a software framework for <strong>distributed processing</strong> of <strong>large datasets</strong> across <strong>large clusters</strong> of computers<ul>
+<li>Large datasets —&gt;Terabytes or petabytes of data</li>
+<li>Large clusters —&gt; hundreds or thousands of nodes </li>
+</ul>
+</li>
+<li>Hadoop is based on a simple programming model called MapReduce</li>
+<li>Hadoop is based on a simple data model, any data will fit</li>
+</ul>
+<h4 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h4>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="星辰墨隐 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="星辰墨隐 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/入门，数据挖掘，算法/" rel="tag"># 入门，数据挖掘，算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/27/利用github-Hexo玩转博客-进阶篇/" rel="next" title="利用github+Hexo玩转博客——进阶篇">
+                <i class="fa fa-chevron-left"></i> 利用github+Hexo玩转博客——进阶篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">星辰墨隐</p>
+              <p class="site-description motion-element" itemprop="description">星辰墨隐的博客</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-1-引论"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1 引论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-什么是大数据及其特点"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 什么是大数据及其特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-特点"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1 特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-知识发现的流程以及核心"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 知识发现的流程以及核心</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-数据中的知识发现（KDD）"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1 数据中的知识发现（KDD）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心-：-数据挖掘"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">核心 ： 数据挖掘</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-什么是数据挖掘，有哪些任务"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 什么是数据挖掘，有哪些任务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-主要任务"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1 主要任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-主流会议与期刊"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 主流会议与期刊</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-1-会议"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.4.1 会议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-2-期刊"><span class="nav-number">1.4.2.</span> <span class="nav-text">1.4.2 期刊</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-2-认识数据与预处理"><span class="nav-number">2.</span> <span class="nav-text">Chapter 2 认识数据与预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-认识数据"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 认识数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-基本概念"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1.基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-属性类型"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 属性类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分类型（Categorical）"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">分类型（Categorical）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数值型（Numerical）"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">数值型（Numerical）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二元属性"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">二元属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-3-数据类型"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.1.3 数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-4-数据的描述"><span class="nav-number">2.1.4.</span> <span class="nav-text">2.1.4 数据的描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中心性描述"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">中心性描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#散度描述"><span class="nav-number">2.1.4.2.</span> <span class="nav-text">散度描述</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-5-数据的相似性度量"><span class="nav-number">2.1.5.</span> <span class="nav-text">2.1.5 数据的相似性度量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标称属性数据"><span class="nav-number">2.1.5.1.</span> <span class="nav-text">标称属性数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二元属性数据"><span class="nav-number">2.1.5.2.</span> <span class="nav-text">二元属性数据</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#例题"><span class="nav-number">2.1.5.2.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数值型数据的相异性"><span class="nav-number">2.1.5.3.</span> <span class="nav-text">数值型数据的相异性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#闵科夫斯基距离"><span class="nav-number">2.1.5.3.1.</span> <span class="nav-text">闵科夫斯基距离</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#序数属性的邻近性度量"><span class="nav-number">2.1.5.4.</span> <span class="nav-text">序数属性的邻近性度量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#混合类型属性的相异性"><span class="nav-number">2.1.5.5.</span> <span class="nav-text">混合类型属性的相异性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#余弦相似性"><span class="nav-number">2.1.5.6.</span> <span class="nav-text">余弦相似性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-数据预处理"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-主要任务"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1 主要任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据清理"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">数据清理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#缺失值处理"><span class="nav-number">2.2.1.1.1.</span> <span class="nav-text">缺失值处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#噪声处理"><span class="nav-number">2.2.1.1.2.</span> <span class="nav-text">噪声处理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据集成"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">数据集成</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#冗余数据处理"><span class="nav-number">2.2.1.2.1.</span> <span class="nav-text">冗余数据处理</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#例题-1"><span class="nav-number">2.2.1.2.1.1.</span> <span class="nav-text">例题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据归约"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">数据归约</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-3-关联规则挖掘"><span class="nav-number">3.</span> <span class="nav-text">Chapter 3 关联规则挖掘</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-什么是关联规则挖掘"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 什么是关联规则挖掘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-一般来说该过程包含两步"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1 一般来说该过程包含两步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-基本概念"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2 基本概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Apriori算法"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Apriori算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-相关定义"><span class="nav-number">3.2.1.</span> <span class="nav-text">3.2.1 相关定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-步骤"><span class="nav-number">3.2.2.</span> <span class="nav-text">3.2.2 步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#由频繁项集产生关联规则"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">由频繁项集产生关联规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#python代码如下："><span class="nav-number">3.2.2.2.</span> <span class="nav-text">python代码如下：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-提高Apriori算法的方法"><span class="nav-number">3.2.3.</span> <span class="nav-text">3.2.3 提高Apriori算法的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hash-based-itemset-counting"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">Hash-based itemset counting</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Transaction-reduction"><span class="nav-number">3.2.3.2.</span> <span class="nav-text">Transaction reduction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Partitioning"><span class="nav-number">3.2.3.3.</span> <span class="nav-text">Partitioning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽样"><span class="nav-number">3.2.3.4.</span> <span class="nav-text">抽样</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-FP-growth"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 FP-growth</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-构建FP树"><span class="nav-number">3.3.1.</span> <span class="nav-text">3.3.1 构建FP树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#举例说明"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">举例说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FP-Tree-挖掘"><span class="nav-number">3.3.1.2.</span> <span class="nav-text">FP Tree 挖掘</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-FP-Tree算法归纳"><span class="nav-number">3.3.2.</span> <span class="nav-text">3.3.2 FP Tree算法归纳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-3-关联模式评估"><span class="nav-number">3.3.3.</span> <span class="nav-text">3.3.3 关联模式评估</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-4-分类与预测"><span class="nav-number">4.</span> <span class="nav-text">Chapter 4 分类与预测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-监督学习VS无监督学习"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 监督学习VS无监督学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-模型分类"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 模型分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-决策树"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 决策树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-决策树构造"><span class="nav-number">4.3.1.</span> <span class="nav-text">4.3.1 决策树构造</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#具体流程"><span class="nav-number">4.3.1.1.</span> <span class="nav-text">具体流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性选择度量"><span class="nav-number">4.3.1.2.</span> <span class="nav-text">属性选择度量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#信息增益（ID3）"><span class="nav-number">4.3.1.2.1.</span> <span class="nav-text">信息增益（ID3）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#信息增益率"><span class="nav-number">4.3.1.2.2.</span> <span class="nav-text">信息增益率</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Gini指标"><span class="nav-number">4.3.1.2.3.</span> <span class="nav-text">Gini指标</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-决策树过拟合问题"><span class="nav-number">4.3.2.</span> <span class="nav-text">4.3.2 决策树过拟合问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-3-由决策树提取分类规则"><span class="nav-number">4.3.3.</span> <span class="nav-text">4.3.3 由决策树提取分类规则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-KNN（K近邻算法——K-Nearest-Neighbor）"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 KNN（K近邻算法——K-Nearest Neighbor）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-1-KNN的基本思想"><span class="nav-number">4.4.1.</span> <span class="nav-text">4.4.1 KNN的基本思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-2-算法计算步骤"><span class="nav-number">4.4.2.</span> <span class="nav-text">4.4.2 算法计算步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-3-算法的优缺点"><span class="nav-number">4.4.3.</span> <span class="nav-text">4.4.3 算法的优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-4-KNN常见的问题"><span class="nav-number">4.4.4.</span> <span class="nav-text">4.4.4 KNN常见的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-5-实现代码"><span class="nav-number">4.4.5.</span> <span class="nav-text">4.4.5 实现代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-朴素贝叶斯（Naive-Bayes）"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 朴素贝叶斯（Naive Bayes）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-支持向量机-（Suppport-Vector-Machine）SVM"><span class="nav-number">4.6.</span> <span class="nav-text">4.6 支持向量机 （Suppport Vector Machine）SVM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#结构风险最小化"><span class="nav-number">4.6.0.1.</span> <span class="nav-text">结构风险最小化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SVM小结"><span class="nav-number">4.6.0.2.</span> <span class="nav-text">SVM小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-7-人工神经网络（Artificial-Neural-Network）ANN-感知机-BP"><span class="nav-number">4.7.</span> <span class="nav-text">4.7 人工神经网络（Artificial Neural Network）ANN + 感知机 + BP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-1-ANN"><span class="nav-number">4.7.1.</span> <span class="nav-text">4.7.1 ANN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-2-感知机模型"><span class="nav-number">4.7.2.</span> <span class="nav-text">4.7.2 感知机模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型"><span class="nav-number">4.7.2.1.</span> <span class="nav-text">模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#学习过程"><span class="nav-number">4.7.2.2.</span> <span class="nav-text">学习过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#感知机简单实现"><span class="nav-number">4.7.2.3.</span> <span class="nav-text">感知机简单实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-3-BP"><span class="nav-number">4.7.3.</span> <span class="nav-text">4.7.3 BP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#python实现简单BP"><span class="nav-number">4.7.3.1.</span> <span class="nav-text">python实现简单BP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-集成学习"><span class="nav-number">4.8.</span> <span class="nav-text">4.8 集成学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-8-1-Bagging-随机森林就是其一个应用"><span class="nav-number">4.8.1.</span> <span class="nav-text">4.8.1 Bagging(随机森林就是其一个应用)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-8-2-Boosting"><span class="nav-number">4.8.2.</span> <span class="nav-text">4.8.2 Boosting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-8-3-Stacking"><span class="nav-number">4.8.3.</span> <span class="nav-text">4.8.3 Stacking</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-9-分类器的评价标准"><span class="nav-number">4.9.</span> <span class="nav-text">4.9 分类器的评价标准</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#类分布不平衡的问题"><span class="nav-number">4.9.0.0.1.</span> <span class="nav-text">类分布不平衡的问题</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-5-聚类分析（Cluster-Analysis）"><span class="nav-number">5.</span> <span class="nav-text">Chapter 5 聚类分析（Cluster Analysis）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-认识聚类"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 认识聚类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-1-聚类算法分类"><span class="nav-number">5.1.1.</span> <span class="nav-text">5.1.1 聚类算法分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#划分方法"><span class="nav-number">5.1.1.1.</span> <span class="nav-text">划分方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#K-means"><span class="nav-number">5.1.1.1.1.</span> <span class="nav-text">K-means</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#K—中心点（K-medoids）"><span class="nav-number">5.1.1.1.2.</span> <span class="nav-text">K—中心点（K-medoids）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#层次聚类方法"><span class="nav-number">5.1.1.2.</span> <span class="nav-text">层次聚类方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于密度的聚类方法"><span class="nav-number">5.1.1.3.</span> <span class="nav-text">基于密度的聚类方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DBSCAN"><span class="nav-number">5.1.1.3.1.</span> <span class="nav-text">DBSCAN</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网格聚类"><span class="nav-number">5.1.1.4.</span> <span class="nav-text">网格聚类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#STING算法"><span class="nav-number">5.1.1.4.1.</span> <span class="nav-text">STING算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离群点（孤立点）检测"><span class="nav-number">5.1.2.</span> <span class="nav-text">离群点（孤立点）检测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于统计学的孤立点检测"><span class="nav-number">5.1.2.1.</span> <span class="nav-text">基于统计学的孤立点检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于距离的孤立点检测"><span class="nav-number">5.1.2.2.</span> <span class="nav-text">基于距离的孤立点检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于偏离的孤立点检测"><span class="nav-number">5.1.2.3.</span> <span class="nav-text">基于偏离的孤立点检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于密度的方法"><span class="nav-number">5.1.2.4.</span> <span class="nav-text">基于密度的方法</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-6-大数据分析"><span class="nav-number">6.</span> <span class="nav-text">Chapter 6 大数据分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-哈希技术"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 哈希技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据流挖掘"><span class="nav-number">6.1.1.</span> <span class="nav-text">数据流挖掘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hadoop-Spark"><span class="nav-number">6.1.2.</span> <span class="nav-text">Hadoop/Spark</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hadoop"><span class="nav-number">6.1.2.1.</span> <span class="nav-text">Hadoop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spark"><span class="nav-number">6.1.2.2.</span> <span class="nav-text">Spark</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">星辰墨隐</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://rui.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/09/12/数据挖掘入门基础/';
+          this.page.identifier = '2018/09/12/数据挖掘入门基础/';
+          this.page.title = '数据挖掘入门基础';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://rui.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
