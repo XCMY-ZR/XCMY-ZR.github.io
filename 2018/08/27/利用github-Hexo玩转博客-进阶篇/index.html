@@ -87,13 +87,14 @@
 <meta property="og:site_name" content="星辰墨隐">
 <meta property="og:description" content="前言搭建好自己的博客，就下来就要为它装点一番：选一个喜爱的主题；添加一些新的页面，例如标签、分类页；添加一些第三方主题，例如评论、打赏等。 本文会详细说明有关hexo和对应主题的细节操作，适合第一次使用hexo的朋友，这里默认大家已经搭建好本地环境。 打造出自己独一无二的博客后，最主要的还是要坚持着把博客写下去！！ 更换博客主题hexo目录结构在说明更换主题前，了解下hexo的目录结构有助于理解。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://pic4.zhimg.com/v2-cb1fd5e5a2e73f513234e434724c7c55_r.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/08/27/利用github-Hexo玩转博客-进阶篇/npm%20install%20hexo-qiniu-sync%20--save">
 <meta property="og:image" content="https://pic4.zhimg.com/80/v2-1ac152c4aabe4c10b762ee27552f1105_hd.jpg">
-<meta property="og:updated_time" content="2018-09-04T02:11:39.263Z">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/7a2c30a6e71d7d4e9006e9bd57a3a682/xmlnote/71E8C41654DA45D38D50789624BA5C29/5928">
+<meta property="og:updated_time" content="2018-10-25T14:01:49.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用github+Hexo玩转博客——进阶篇">
 <meta name="twitter:description" content="前言搭建好自己的博客，就下来就要为它装点一番：选一个喜爱的主题；添加一些新的页面，例如标签、分类页；添加一些第三方主题，例如评论、打赏等。 本文会详细说明有关hexo和对应主题的细节操作，适合第一次使用hexo的朋友，这里默认大家已经搭建好本地环境。 打造出自己独一无二的博客后，最主要的还是要坚持着把博客写下去！！ 更换博客主题hexo目录结构在说明更换主题前，了解下hexo的目录结构有助于理解。">
-<meta name="twitter:image" content="https://pic4.zhimg.com/v2-cb1fd5e5a2e73f513234e434724c7c55_r.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/27/利用github-Hexo玩转博客-进阶篇/npm%20install%20hexo-qiniu-sync%20--save">
 
 
 
@@ -370,7 +371,7 @@
 <p>本文会详细说明有关hexo和对应主题的细节操作，适合第一次使用hexo的朋友，这里默认大家已经搭建好本地环境。</p>
 <p>打造出自己独一无二的博客后，最主要的还是要坚持着把博客写下去！！</p>
 <h1 id="更换博客主题"><a href="#更换博客主题" class="headerlink" title="更换博客主题"></a>更换博客主题</h1><h2 id="hexo目录结构"><a href="#hexo目录结构" class="headerlink" title="hexo目录结构"></a>hexo目录结构</h2><p>在说明更换主题前，了解下hexo的目录结构有助于理解。s</p>
-<p><img src="https://pic4.zhimg.com/v2-cb1fd5e5a2e73f513234e434724c7c55_r.jpg" alt=""></p>
+<p><img src="npm install hexo-qiniu-sync --save" alt=""></p>
 <h3 id="scaffolds"><a href="#scaffolds" class="headerlink" title="scaffolds"></a>scaffolds</h3><p>模版 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。</p>
 <p>Hexo的模板是指在新建的markdown文件中默认填充的内容。例如，如果您修改scaffold/post.md中的Front-matter内容，那么每次新建一篇文章时都会包含这个修改。</p>
 <h3 id="source"><a href="#source" class="headerlink" title="source"></a>source</h3><p>资源文件夹是存放用户资源的地方。除 _posts 文件夹之外，开头命名为 _ (下划线)的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 public 文件夹，而其他文件会被拷贝过去。</p>
@@ -387,6 +388,7 @@
 <h1 id="Markdown介绍"><a href="#Markdown介绍" class="headerlink" title="Markdown介绍"></a>Markdown介绍</h1><p>hexo写博客使用markdown语法，这里推荐一篇超详细的hexo-markdown<a href="https://hyxxsfwy.github.io/2016/01/15/Hexo-Markdown-%E7%AE%80%E6%98%8E%E8%AF%AD%E6%B3%95%E6%89%8B%E5%86%8C/#fn1" target="_blank" rel="noopener">教程</a></p>
 <h2 id="图床的使用"><a href="#图床的使用" class="headerlink" title="图床的使用"></a>图床的使用</h2><p>平时的博客会用到很多图片，推荐使用markdown的外链的形式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![图片说明](图片链接 &quot;图片标题&quot;)</span><br></pre></td></tr></table></figure></p>
 <p>那么如何生成图片外链，这里你就需要一个云资源的对象存储桶来制作图床，这里推荐使用的七牛云，一旦你认证成功后，每月的免费流量和10G免费空间完全够你使用了。这里有篇详细的<a href="https://juejin.im/post/5a71ac325188257350518a23" target="_blank" rel="noopener">教程</a></p>
+<p><img src="https://note.youdao.com/yws/public/resource/7a2c30a6e71d7d4e9006e9bd57a3a682/xmlnote/71E8C41654DA45D38D50789624BA5C29/5928" alt=""></p>
 
       
     </div>
