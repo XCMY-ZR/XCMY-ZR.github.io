@@ -94,13 +94,13 @@
 <meta property="og:image" content="http://img.wujinchen.xin/static/images/01-successkeydisplay.jpg">
 <meta property="og:image" content="http://img.wujinchen.xin/static/images/01-id_rsa.jpg">
 <meta property="og:image" content="http://img.wujinchen.xin/static/images/01-githubdaosanjiao.jpg">
-<meta property="og:image" content="http://img.wujinchen.xin/static/images/01-assignssh.jpg">
+<meta property="og:image" content="http://img.wujinchen.xin/static/images/01-githubssh.jpg">
 <meta property="og:image" content="http://img.wujinchen.xin/static/images/01-githubkeysuccess.png">
 <meta property="og:image" content="http://img.wujinchen.xin/static/images/01-opencmd.jpg">
 <meta property="og:image" content="http://img.wujinchen.xin/static/images/01-configyml.jpg">
 <meta property="og:image" content="http://img.wujinchen.xin/static/images/01-themesconfigyml.jpg">
-<meta property="og:image" content="http://img.wujinchen.xin/static/images/01-githubssh.jpg">
-<meta property="og:updated_time" content="2018-10-28T16:06:48.380Z">
+<meta property="og:image" content="http://img.wujinchen.xin/static/images/01-assignssh.jpg">
+<meta property="og:updated_time" content="2018-11-09T10:41:36.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用github+Hexo玩转博客——搭建篇">
 <meta name="twitter:description" content="前言为什么要写博客在开始搭建我自己的博客时，我也问过自己这个问题，对我而言，写博客有以下几个理由：  可以逼迫我持续学习：既然自己搭建了自己特有的博客，就应该为其负责，总要去不断学习，有东西可总结，可写。 可以积累更多的知识，可以作为自己的移动笔记本，忘掉的知识也能立即查找，复习起来。 我个人的表达能力较差，坚持的写作可以让提高我把事情讲清楚的能力。 将反思与总结养成习惯，提高思考能力。 或许可以">
@@ -433,25 +433,30 @@
 <p> 复制id_rsa.pub(用记事本就可以打开)的内容到你的GitHub上相应的位置。</p>
 <p> 在你的GitHub主页，点击头像后边的倒三角</p>
  <img src="http://img.wujinchen.xin/static/images/01-githubdaosanjiao.jpg">
- <img src="http://img.wujinchen.xin/static/images/01-assignssh.jpg">
-<p> Title可以注明是用于什么SSH或那台机子上的，Key部分就是放刚才复制的内容啦 点击Add SSH key</p>
-<p> 3.4 测试SSH。git bash里，输入以下代码（不要修改任何字符）</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-<p> 会得到以下反馈</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host &apos;GitHub.com (207.97.227.239)&apos; can&apos;t be established.</span><br><span class="line">RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</span><br><span class="line">Are you sure you want to continue connecting (yes/no)</span><br></pre></td></tr></table></figure>
-<p> 输入yes, 回车，接着输入刚刚设置的密码得到以下结果表示成功</p>
-<img src="http://img.wujinchen.xin/static/images/01-githubkeysuccess.png">
-<p> 恭喜！现在已经可以通过SSH链接到Github，接下来完善一下个人信息</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;your username&quot;//输入注册时的username</span><br><span class="line">$ git config --global user.email  &quot;your email&quot;//填写注册邮箱</span><br></pre></td></tr></table></figure>
-<p> 如遇问题，<a href="https://help.github.com/articles/connecting-to-github-with-ssh/" target="_blank" rel="noopener">常见错误参考</a></p>
+ <img src="http://img.wujinchen.xin/static/images/01-githubssh.jpg">
 </li>
 </ol>
-<h1 id="搭建阶段"><a href="#搭建阶段" class="headerlink" title="搭建阶段"></a>搭建阶段</h1><h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>建议阅读<a href="https://hexo.io/zh-cn/docs" target="_blank" rel="noopener">Hexo官网</a>详细了解</p>
+<pre><code>Title可以注明是用于什么SSH或那台机子上的，Key部分就是放刚才复制的内容啦 点击Add SSH key
+
+3.4 测试SSH。git bash里，输入以下代码（不要修改任何字符）
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+会得到以下反馈
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host &apos;GitHub.com (207.97.227.239)&apos; can&apos;t be established.</span><br><span class="line">RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</span><br><span class="line">Are you sure you want to continue connecting (yes/no)</span><br></pre></td></tr></table></figure>
+
+输入yes, 回车，接着输入刚刚设置的密码得到以下结果表示成功
+</code></pre>   <img src="http://img.wujinchen.xin/static/images/01-githubkeysuccess.png">
+<pre><code>恭喜！现在已经可以通过SSH链接到Github，接下来完善一下个人信息
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;your username&quot;//输入注册时的username</span><br><span class="line">$ git config --global user.email  &quot;your email&quot;//填写注册邮箱</span><br></pre></td></tr></table></figure>
+
+如遇问题，[常见错误参考](https://help.github.com/articles/connecting-to-github-with-ssh/)
+</code></pre><h1 id="搭建阶段"><a href="#搭建阶段" class="headerlink" title="搭建阶段"></a>搭建阶段</h1><h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>建议阅读<a href="https://hexo.io/zh-cn/docs" target="_blank" rel="noopener">Hexo官网</a>详细了解</p>
 <p>Hexo就是我们的个人博客网站的框架， 这里需要自己在电脑常里创建一个文件夹，可以命名为Blog，Hexo框架与以后你自己发布的网页都在这个文件夹中。创建好后，进入文件夹中，按住shift键，右击鼠标点击命令行</p>
 <img src="http://img.wujinchen.xin/static/images/01-opencmd.jpg">
 <p>使用npm命令安装Hexo，输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
 <p>这个安装时间较长耐心等待，安装完成后，初始化我们的博客，输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure></p>
 <p>安装依赖包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure></p>
+<p>确保gitb部署<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
 <p>为了检测我们的网站雏形，分别按顺序输入以下三条命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo new test_my_site   //新建一篇博客</span><br><span class="line"></span><br><span class="line">hexo g   //生成网页</span><br><span class="line"></span><br><span class="line">hexo s    //在本地部署实现预览</span><br></pre></td></tr></table></figure></p>
 <p>这些命令在后面作介绍，完成后，打开浏览器输入地址:localhost:4000，可以本地查看网站</p>
 <p>常用hexo命令命令简写。<a href="https://hexo.io/zh-cn/docs/commands" target="_blank" rel="noopener">更多指令</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">hexo n &quot;我的博客&quot; == hexo new &quot;我的博客&quot; #新建文章</span><br><span class="line"></span><br><span class="line">hexo g == hexo generate #生成</span><br><span class="line"></span><br><span class="line">hexo s == hexo server #启动服务预览</span><br><span class="line"></span><br><span class="line">hexo d == hexo deploy #部署</span><br><span class="line"></span><br><span class="line">hexo server #Hexo会监视文件变动并自动更新，无须重启服务器</span><br><span class="line"></span><br><span class="line">hexo server -p 5000 #更改端口</span><br><span class="line"></span><br><span class="line">hexo server -i 192.168.1.1 #自定义 IP</span><br><span class="line"></span><br><span class="line">hexo clean #清除缓存，若是网页正常情况下可以忽略这条命令</span><br></pre></td></tr></table></figure></p>
@@ -460,8 +465,8 @@
 <p>进入根目录里的themes文件夹，里面也有个_config.yml文件，这个称为主题配置文件，如下图</p>
 <img src="http://img.wujinchen.xin/static/images/01-themesconfigyml.jpg">
 <p>这两个配置文件几乎决定你的博客网站的大部分细节（需要提醒的是：yaml文件的对格式要求严格，英文冒号后必须有空格），这里介绍下站点配置文件，主题配置文件根据自己选用不同的主题去官网查看配置介绍。<br><a href="https://blog.junyu.io/posts/0004-hexo-config-settings.html" target="_blank" rel="noopener">配置文件详细说明</a><br>进入 Github 个人主页中的 Repository，复制新建的独立博客项目:<a href="http://username.github.io" target="_blank" rel="noopener">http://username.github.io</a> 的 SSH 码</p>
-<img src="http://img.wujinchen.xin/static/images/01-githubssh.jpg">
-<p>打开站点配置文件,把刚刚复制的 SSH 码粘贴到“repository：”后面，别忘了冒号后要空一格。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:username/username.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
+<img src="http://img.wujinchen.xin/static/images/01-assignssh.jpg">
+<p>打开站点配置文件,把刚刚复制的 SSH 码粘贴到“repository：”后面，别忘了冒号后要空一格。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/username/username.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
 <p>有了这个配置和你之前创建的SSH key 就能确保 hexo d 的部署的时候推送到你的GitHub</p>
 <p>接着执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></p>
 <p>部署成功，那么恭喜你就可以用username.github.io来访问了</p>
