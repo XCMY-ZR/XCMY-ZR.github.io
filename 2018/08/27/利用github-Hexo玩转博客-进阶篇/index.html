@@ -87,13 +87,13 @@
 <meta property="og:site_name" content="星辰墨隐">
 <meta property="og:description" content="前言搭建好自己的博客，就下来就要为它装点一番：选一个喜爱的主题；添加一些新的页面，例如标签、分类页；添加一些第三方主题，例如评论、打赏等。 本文会详细说明有关hexo和对应主题的细节操作，适合第一次使用hexo的朋友，这里默认大家已经搭建好本地环境。 打造出自己独一无二的博客后，最主要的还是要坚持着把博客写下去！！ 更换博客主题hexo目录结构在说明更换主题前，了解下hexo的目录结构有助于理解。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/08/27/利用github-Hexo玩转博客-进阶篇/npm%20install%20hexo-qiniu-sync%20--save">
-<meta property="og:image" content="https://pic4.zhimg.com/80/v2-1ac152c4aabe4c10b762ee27552f1105_hd.jpg">
-<meta property="og:updated_time" content="2018-10-31T02:27:16.491Z">
+<meta property="og:image" content="http://img.wujinchen.xin/static/images/02-content.png">
+<meta property="og:image" content="http://img.wujinchen.xin/static/images/02-configxijie01.png">
+<meta property="og:updated_time" content="2018-11-09T14:37:46.721Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用github+Hexo玩转博客——进阶篇">
 <meta name="twitter:description" content="前言搭建好自己的博客，就下来就要为它装点一番：选一个喜爱的主题；添加一些新的页面，例如标签、分类页；添加一些第三方主题，例如评论、打赏等。 本文会详细说明有关hexo和对应主题的细节操作，适合第一次使用hexo的朋友，这里默认大家已经搭建好本地环境。 打造出自己独一无二的博客后，最主要的还是要坚持着把博客写下去！！ 更换博客主题hexo目录结构在说明更换主题前，了解下hexo的目录结构有助于理解。">
-<meta name="twitter:image" content="http://yoursite.com/2018/08/27/利用github-Hexo玩转博客-进阶篇/npm%20install%20hexo-qiniu-sync%20--save">
+<meta name="twitter:image" content="http://img.wujinchen.xin/static/images/02-content.png">
 
 
 
@@ -369,8 +369,8 @@
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>搭建好自己的博客，就下来就要为它装点一番：选一个喜爱的主题；添加一些新的页面，例如标签、分类页；添加一些第三方主题，例如评论、打赏等。</p>
 <p>本文会详细说明有关hexo和对应主题的细节操作，适合第一次使用hexo的朋友，这里默认大家已经搭建好本地环境。</p>
 <p>打造出自己独一无二的博客后，最主要的还是要坚持着把博客写下去！！</p>
-<h1 id="更换博客主题"><a href="#更换博客主题" class="headerlink" title="更换博客主题"></a>更换博客主题</h1><h2 id="hexo目录结构"><a href="#hexo目录结构" class="headerlink" title="hexo目录结构"></a>hexo目录结构</h2><p>在说明更换主题前，了解下hexo的目录结构有助于理解。s</p>
-<p><img src="npm install hexo-qiniu-sync --save" alt=""></p>
+<h1 id="更换博客主题"><a href="#更换博客主题" class="headerlink" title="更换博客主题"></a>更换博客主题</h1><h2 id="hexo目录结构"><a href="#hexo目录结构" class="headerlink" title="hexo目录结构"></a>hexo目录结构</h2><p>在说明更换主题前，了解下hexo的目录结构有助于理解。</p>
+<img src="http://img.wujinchen.xin/static/images/02-content.png">
 <h3 id="scaffolds"><a href="#scaffolds" class="headerlink" title="scaffolds"></a>scaffolds</h3><p>模版 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。</p>
 <p>Hexo的模板是指在新建的markdown文件中默认填充的内容。例如，如果您修改scaffold/post.md中的Front-matter内容，那么每次新建一篇文章时都会包含这个修改。</p>
 <h3 id="source"><a href="#source" class="headerlink" title="source"></a>source</h3><p>资源文件夹是存放用户资源的地方。除 _posts 文件夹之外，开头命名为 _ (下划线)的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 public 文件夹，而其他文件会被拷贝过去。</p>
@@ -380,7 +380,8 @@
 <p>以我的博客举例，我使用的是Next主题，在blog目录中（<strong>就是命令行的位置处于blog目录而不是在themes目录下</strong>）打开命令行输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure></p>
 <p>这是将Next主题下载到blog目录的themes主题下的next文件夹中。打开站点的_config.yml配置文件，修改主题为next</p>
 <p>打开主题的_config.yml配置文件，不是站点主题文件，找到Scheme Settings</p>
-<p><img src="https://pic4.zhimg.com/80/v2-1ac152c4aabe4c10b762ee27552f1105_hd.jpg" alt=""><br>next主题有三个样式，我用的是Pisces，你们可以自己试试看，选择你自己喜欢的样式（只需要把行首的#去除，#是注释）</p>
+<img src="http://img.wujinchen.xin/static/images/02-configxijie01.png">
+<p>next主题有三个样式，我用的是Pisces，你们可以自己试试看，选择你自己喜欢的样式（只需要把行首的#去除，#是注释）</p>
 <h2 id="主题选择"><a href="#主题选择" class="headerlink" title="主题选择"></a>主题选择</h2><p>这里有篇知乎总结一些热门的<a href="https://www.zhihu.com/question/24422335/answer/46357100" target="_blank" rel="noopener">主题</a>，也可去<a href="https://hexo.io/themes/" target="_blank" rel="noopener">主题官网</a>。</p>
 <h1 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h1><p>每个主题的配置文件（_config.yml）都值得探索，都会使你的博客与众不同。有关主题的配置可以找到相应的GitHub或者官方文档去学习。去真正实现个性化设置。</p>
 <p>以next举例，该主题的<a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">官方文档</a>就很详细和全面,各种功能都说的很详细，这里不一一细说。</p>
