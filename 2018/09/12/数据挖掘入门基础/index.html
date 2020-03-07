@@ -503,12 +503,12 @@
 </ul>
 <h3 id="2-1-5-数据的相似性度量"><a href="#2-1-5-数据的相似性度量" class="headerlink" title="2.1.5 数据的相似性度量"></a>2.1.5 数据的相似性度量</h3><blockquote>
 <p>相似性与相异型都称邻近性，如果两个对象i和j不相似，则它们的相似性度量为0，相异型度量为1</p>
-</blockquote>
 <h4 id="标称属性数据"><a href="#标称属性数据" class="headerlink" title="标称属性数据"></a>标称属性数据</h4><p>相异性度量的方法：</p>
-<p>$$ d(i,j)=\frac{p-m}{p} $$</p>
-<p>m：状态取值匹配的变量数目，</p>
+</blockquote>
+<script type="math/tex; mode=display">d(i,j)=\frac{p-m}{p}</script><p>m：状态取值匹配的变量数目，</p>
 <p>p:变量总数</p>
-<h4 id="二元属性数据"><a href="#二元属性数据" class="headerlink" title="二元属性数据"></a>二元属性数据</h4><table>
+<h4 id="二元属性数据"><a href="#二元属性数据" class="headerlink" title="二元属性数据"></a>二元属性数据</h4><div class="table-container">
+<table>
 <thead>
 <tr>
 <th style="text-align:center">属性值</th>
@@ -538,18 +538,18 @@
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
 <li>对称的二元变量的相异度计算</li>
 </ul>
-<p>$$ d(i,j)=\frac{r+s}{q+r+s+t} $$</p>
-<ul>
+<script type="math/tex; mode=display">d(i,j)=\frac{r+s}{q+r+s+t}</script><ul>
 <li>非对称的二元变量相异度计算</li>
 </ul>
-<p>$$ d(i,j)=\frac{r+s}{q+r+s} $$</p>
-<blockquote>
+<script type="math/tex; mode=display">d(i,j)=\frac{r+s}{q+r+s}</script><blockquote>
 <p>对与非对称的相异度，负匹配数目t被认为不重要而忽略</p>
 </blockquote>
-<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><table>
+<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><div class="table-container">
+<table>
 <thead>
 <tr>
 <th style="text-align:center">Name</th>
@@ -595,19 +595,22 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>Gender是对称的，其余都不是对称的</p>
 <p>Y和P的值设置为1，而N的值设置为0</p>
-<p>$$<br>d(Jack,Mary)=\frac{0+1}{2+0+1}=0.33<br>$$<br>$$<br>d(Jack,Jim)=\frac{1+1}{1+1+1}=0.67<br>$$<br>$$<br>d(Jim,Mary)=\frac{1+2}{1+1+2}=0.75<br>$$</p>
-<h4 id="数值型数据的相异性"><a href="#数值型数据的相异性" class="headerlink" title="数值型数据的相异性"></a>数值型数据的相异性</h4><h5 id="闵科夫斯基距离"><a href="#闵科夫斯基距离" class="headerlink" title="闵科夫斯基距离"></a>闵科夫斯基距离</h5><p>$$<br>d(i,j)=\sqrt[h]{|x_{i1}-x_{j1}|^h+|x_{i2}-x_{j2}|^h+……+|x_{ip}-x_{jp}|^h}<br>$$</p>
-<ul>
+<script type="math/tex; mode=display">
+d(Jack,Mary)=\frac{0+1}{2+0+1}=0.33</script><script type="math/tex; mode=display">
+d(Jack,Jim)=\frac{1+1}{1+1+1}=0.67</script><script type="math/tex; mode=display">
+d(Jim,Mary)=\frac{1+2}{1+1+2}=0.75</script><h4 id="数值型数据的相异性"><a href="#数值型数据的相异性" class="headerlink" title="数值型数据的相异性"></a>数值型数据的相异性</h4><h5 id="闵科夫斯基距离"><a href="#闵科夫斯基距离" class="headerlink" title="闵科夫斯基距离"></a>闵科夫斯基距离</h5><script type="math/tex; mode=display">
+d(i,j)=\sqrt[h]{|x_{i1}-x_{j1}|^h+|x_{i2}-x_{j2}|^h+……+|x_{ip}-x_{jp}|^h}</script><ul>
 <li>h=1为曼哈顿距离</li>
 <li>h=2为欧几里得距离</li>
 </ul>
 <h4 id="序数属性的邻近性度量"><a href="#序数属性的邻近性度量" class="headerlink" title="序数属性的邻近性度量"></a>序数属性的邻近性度量</h4><p>例如一个序数属性{fair、good、excellent}可以映射为{0，0.5，1}利用数值型方法去度量</p>
 <h4 id="混合类型属性的相异性"><a href="#混合类型属性的相异性" class="headerlink" title="混合类型属性的相异性"></a>混合类型属性的相异性</h4><p>分别计算相异性矩阵求和求平均</p>
 <p><strong>需要注意：</strong> 需要把相异型矩阵的数值压缩到区间[0,1]利用最大最小归一化</p>
-<h4 id="余弦相似性"><a href="#余弦相似性" class="headerlink" title="余弦相似性"></a>余弦相似性</h4><p>$$<br>sim(\mathbf{x},\mathbf{y})=\frac{\mathbf{x}\cdot\mathbf{y}}{||\mathbf{x}||||\mathbf{y}||}<br>$$</p>
-<h2 id="2-2-数据预处理"><a href="#2-2-数据预处理" class="headerlink" title="2.2 数据预处理"></a>2.2 数据预处理</h2><h3 id="2-2-1-主要任务"><a href="#2-2-1-主要任务" class="headerlink" title="2.2.1 主要任务"></a>2.2.1 主要任务</h3><ul>
+<h4 id="余弦相似性"><a href="#余弦相似性" class="headerlink" title="余弦相似性"></a>余弦相似性</h4><script type="math/tex; mode=display">
+sim(\mathbf{x},\mathbf{y})=\frac{\mathbf{x}\cdot\mathbf{y}}{||\mathbf{x}||||\mathbf{y}||}</script><h2 id="2-2-数据预处理"><a href="#2-2-数据预处理" class="headerlink" title="2.2 数据预处理"></a>2.2 数据预处理</h2><h3 id="2-2-1-主要任务"><a href="#2-2-1-主要任务" class="headerlink" title="2.2.1 主要任务"></a>2.2.1 主要任务</h3><ul>
 <li>数据清理：空缺值，噪声数据，删除孤立点，解决不一致性</li>
 <li>数据集成：集成多个数据库、数据立方体或文件</li>
 <li>数据归约：得到数据的压缩表示</li>
@@ -634,8 +637,8 @@
 <li>数值型</li>
 </ul>
 <p>相关分析——皮尔逊系数</p>
-<p>$$<br>r_{A,B}=\frac{\sum_{i=1}^n(a_i-A)(b_i-B)}{(n-1)\sigma_A\sigma_B}<br>$$</p>
-<ul>
+<script type="math/tex; mode=display">
+r_{A,B}=\frac{\sum_{i=1}^n(a_i-A)(b_i-B)}{(n-1)\sigma_A\sigma_B}</script><ul>
 <li>n：样本个数</li>
 <li>A、B两个属性的平均值</li>
 <li><p>$\sigma_A$ $\sigma_B$各自标准差</p>
@@ -643,12 +646,14 @@
 <li><p>标称数据<br>相关分析——卡方检验</p>
 </li>
 </ul>
-<p>$$<br>\chi^2=\sum_{i=1}^c\sum_{j=1}^r\frac{(o_{ij}-e_{ij})^2}{e_{ij}}<br>$$</p>
-<ul>
-<li>$o_{ij}$是事件$(A_i,B_i)$的观测频度，而$e_{ij}$是事件$(A_i,B_i)$的期望频度。</li>
+<script type="math/tex; mode=display">
+\chi^2=\sum_{i=1}^c\sum_{j=1}^r\frac{(o_{ij}-e_{ij})^2}{e_{ij}}</script><ul>
+<li>$o<em>{ij}$是事件$(A_i,B_i)$的观测频度，而$e</em>{ij}$是事件$(A_i,B_i)$的期望频度。</li>
 </ul>
-<p>$$<br>e_{ij}=\frac{count(A=a_i)\times count(B=b_j)}{n}<br>$$<br><strong>自由度为$(r-1)\times(c-1)$</strong></p>
-<h6 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h6><table>
+<script type="math/tex; mode=display">
+e_{ij}=\frac{count(A=a_i)\times count(B=b_j)}{n}</script><p><strong>自由度为$(r-1)\times(c-1)$</strong></p>
+<h6 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h6><div class="table-container">
+<table>
 <thead>
 <tr>
 <th style="text-align:center">属性</th>
@@ -678,9 +683,10 @@
 </tr>
 </tbody>
 </table>
-<p>$$<br>e_{11}=\frac{count(\text 男)\times count(\text 小\text说)}{n}=\frac{300\times450}{1500}=90<br>$$</p>
-<p>$$……$$</p>
-<p>$$<br>\chi^2=\frac{(250-90)^2}{90}+\frac{(50-210)^2}{210}+\frac{(200-360)^2}{360}+\frac{(1000-8400)^2}{840}=507.93<br>$$<br>对于$2\times2$的表自由度为$(2-1)(2-1)=1$。对于自由度1，在0.001的置信水平下，拒绝假设的值是10.82，则这两个属性强相关。</p>
+</div>
+<script type="math/tex; mode=display">
+e_{11}=\frac{count(\text 男)\times count(\text 小\text说)}{n}=\frac{300\times450}{1500}=90</script><script type="math/tex; mode=display">……</script><script type="math/tex; mode=display">
+\chi^2=\frac{(250-90)^2}{90}+\frac{(50-210)^2}{210}+\frac{(200-360)^2}{360}+\frac{(1000-8400)^2}{840}=507.93</script><p>对于$2\times2$的表自由度为$(2-1)(2-1)=1$。对于自由度1，在0.001的置信水平下，拒绝假设的值是10.82，则这两个属性强相关。</p>
 <h4 id="数据归约"><a href="#数据归约" class="headerlink" title="数据归约"></a>数据归约</h4><p>用来得到数据集的归约表示，它小的多，但可以产生相同的分析结果</p>
 <ul>
 <li>维归约：小波分析、PCA、特征筛选</li>
@@ -704,6 +710,7 @@
 <li>置信度：确定Y在包含X的食物中出现的频繁程度$con(X,Y)=P(Y|X)=\frac{sup(X\bigcup Y)}{sup(X)}$</li>
 </ul>
 <p><em>例子</em> (min_sup:50% min_con:50%)</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -740,6 +747,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>可以发现规则：A===&gt;C</p>
 <p>最小支持度{A，C}：50%</p>
 <p>最小置信度：$\frac{sup(A,C)}{sup(A)}= \frac{50\%}{75\%}=66.6\%$</p>
@@ -755,11 +763,11 @@
 <ul>
 <li><strong>剪枝策略</strong></li>
 </ul>
-<p>由于存在先验性质：任何非频繁的(k-1)项集都不是频繁k项集的子集。因此，如果一个候选k项集$C_k$的(k-1)项子集不在$L_{k-1}$中，则该候选也不可能是频繁的，从而可以从$C_k$中删除，获得压缩后的$C_k$。</p>
+<p>由于存在先验性质：任何非频繁的(k-1)项集都不是频繁k项集的子集。因此，如果一个候选k项集$C<em>k$的(k-1)项子集不在$L</em>{k-1}$中，则该候选也不可能是频繁的，从而可以从$C_k$中删除，获得压缩后的$C_k$。</p>
 <ul>
 <li><strong>删除策略</strong></li>
 </ul>
-<p>基于压缩后的$C_k$，扫描所有事务，对$C_k$中的每个项进行计数，然后删除不满足最小支持度的项，从而获得频繁k项集，即$L_{k}$。</p>
+<p>基于压缩后的$C<em>k$，扫描所有事务，对$C_k$中的每个项进行计数，然后删除不满足最小支持度的项，从而获得频繁k项集，即$L</em>{k}$。</p>
 <h3 id="3-2-2-步骤"><a href="#3-2-2-步骤" class="headerlink" title="3.2.2 步骤"></a>3.2.2 步骤</h3><ol>
 <li>每个项都是候选1项集的集合$C_1$的成员。算法扫描所有的事务，获得每个项，生成$C_1$。然后对每个项进行计数。然后根据最小支持度从$C_1$中删除不满足的项，从而获得频繁1项集$L_1$。</li>
 <li>对$L_1$的自身连接生成的集合执行剪枝策略产生候选2项集的集合$C_2$，然后，扫描所有事务，对$C_2$中每个项进行计数。同样的，根据最小支持度从$C_2$中删除不满足的项，从而获得频繁2项集$L_2$。</li>
@@ -857,6 +865,7 @@
 </ul>
 <p>现有的关联规则的挖掘算法依赖于<strong>支持度和置信度</strong>来除去没有意义的模式。 ==然而。。。==</p>
 <p>假定希望分析爱喝咖啡和爱喝茶的人之间的关系。收集一组人关于饮料偏爱的信息，并汇总到下表</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -887,8 +896,9 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>可以使用表中信息来评估关系规则{茶} -&gt;{咖啡}。<br>似乎喜欢喝茶的人也喜欢喝咖啡，因为该规则的支持度（15%）和置信度（75%）都相当高。<br>但是所有人中，不管他是否喝茶，喝咖啡的人的比例为80%。这意味着，一个人如果喝茶，则他喝咖啡的可能性由80%减到了75%。</p>
-<pre><code>强规则不一定是有趣的，甚至是“误导”的。
+<pre><code> 强规则不一定是有趣的，甚至是“误导”的。
 </code></pre><p>   <strong>原因</strong>：置信度的缺点在于该度量忽略了规则后件中项集的支持度。</p>
 <p>  茶和咖啡的例子表明，由于置信度度量忽略了规则后件中出现的项集的支持度，高置信度的规则有时存在误导。<br>解决这个问题的一种方法是使用称作<strong>提升度lift</strong>的度量：它计算规则置信度和规则后件中项集的支持度之间的比率</p>
 <h1 id="Chapter-4-分类与预测"><a href="#Chapter-4-分类与预测" class="headerlink" title="Chapter 4 分类与预测"></a>Chapter 4 分类与预测</h1><h2 id="4-1-监督学习VS无监督学习"><a href="#4-1-监督学习VS无监督学习" class="headerlink" title="4.1 监督学习VS无监督学习"></a>4.1 监督学习VS无监督学习</h2><ul>
@@ -959,8 +969,7 @@
 <h5 id="信息增益（ID3）"><a href="#信息增益（ID3）" class="headerlink" title="信息增益（ID3）"></a>信息增益（ID3）</h5><ul>
 <li>信息熵</li>
 </ul>
-<p>$$H(D)=- \sum_{i=1}^{k}(p_i\times logp_i)$$</p>
-<p>$p_i$表示第i类的概率</p>
+<script type="math/tex; mode=display">H(D)=- \sum_{i=1}^{k}(p_i\times logp_i)</script><p>$p_i$表示第i类的概率</p>
 <ul>
 <li>条件信息增益</li>
 </ul>
@@ -968,10 +977,9 @@
 <ul>
 <li>信息增益</li>
 </ul>
-<p>$$G(D,A)=H(D)-H(D|A)$$</p>
-<p>$$H(D|A)=\sum_{i=1}^{k}p_{i}H(D|A=a_i)=-\sum_{i=1}^{k}p_i\sum_{j=1}^{n}p(y_j|x_i)log p(y_j|x_i)$$</p>
-<p>首先需要筛选出特定特征以及特定特征取值的数据集 $D|A=a_j$，再根据公式计算条件熵。</p>
+<script type="math/tex; mode=display">G(D,A)=H(D)-H(D|A)</script><script type="math/tex; mode=display">H(D|A)=\sum_{i=1}^{k}p_{i}H(D|A=a_i)=-\sum_{i=1}^{k}p_i\sum_{j=1}^{n}p(y_j|x_i)log p(y_j|x_i)</script><p>首先需要筛选出特定特征以及特定特征取值的数据集 $D|A=a_j$，再根据公式计算条件熵。</p>
 <p><strong>Eg：</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1014,8 +1022,10 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>X = 专业 </p>
 <p>Y=是否喜欢IPHINEX </p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1042,6 +1052,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>$H(Y|X)=0.5\times1+0.25\times0+0.25\times0=0.5$</p>
 <p>刻画在已知X的基础上需要节约多少信息来描述Y<br>$IG(Y|X)=H(Y)-H(Y|X)=1-0.5=0.5$</p>
 <h5 id="信息增益率"><a href="#信息增益率" class="headerlink" title="信息增益率"></a>信息增益率</h5><ul>
@@ -1052,7 +1063,7 @@
 </li>
 <li>C4.5（ID3升级）使用<strong>增益率</strong>来客服这一问题（规范化信息增益）</li>
 <li>具有最大增益率的属性选为分裂属性<h5 id="Gini指标"><a href="#Gini指标" class="headerlink" title="Gini指标"></a>Gini指标</h5></li>
-<li><p>是指度量元组的不纯度。数据D包含n类别的样本，Gini（D）定义为：<br>$gini(D)=1-\sum_{j=1}^{n}p_{j}^{2}$</p>
+<li><p>是指度量元组的不纯度。数据D包含n类别的样本，Gini（D）定义为：<br>$gini(D)=1-\sum<em>{j=1}^{n}p</em>{j}^{2}$</p>
 <p>  $p_j$为类别j在D中的频率</p>
 </li>
 <li>具有最小gini的属性或者不纯度减少最大的用于分裂节点。</li>
@@ -1159,9 +1170,10 @@
 <p><strong>重要假设：类条件独立</strong></p>
 <p>X = 特征</p>
 <p>C = 类别</p>
-<p>$$<br>P(X|C_i)=\prod_{k=1}^{n}P(x_k|C_i)<br>$$<br>$$<br>P(C_i|X)=\frac{P(X|C_i)P(C_i)}{P(X)}=\frac{P(C_i)\prod_{k=1}^{n}P(X_i|C_i)}{P(X)}<br>$$</p>
-<p>$$<br>max(P(C_i|X))<br>$$</p>
-<ul>
+<script type="math/tex; mode=display">
+P(X|C_i)=\prod_{k=1}^{n}P(x_k|C_i)</script><script type="math/tex; mode=display">
+P(C_i|X)=\frac{P(X|C_i)P(C_i)}{P(X)}=\frac{P(C_i)\prod_{k=1}^{n}P(X_i|C_i)}{P(X)}</script><script type="math/tex; mode=display">
+max(P(C_i|X))</script><ul>
 <li>优点：<ul>
 <li>算法逻辑简单,易于实现（算法思路很简单，只要使用贝叶斯公式转化即可！）</li>
 <li>分类过程中时空开销小（假设特征相互独立，只会涉及到二维存储</li>
@@ -1239,7 +1251,7 @@
 <ol>
 <li><p><strong>相关学习</strong>：其思想最早是由Hebb作为假设提出，并已得到神经细胞学说的证实，人们称之为Hebb（海布）学习规则。</p>
 <p> Hebb学习规则可描述为：如果神经网络中某一神经元与另一直接和其连接的神经元同时处于兴奋状态，那么，这两个神经元的连接强度应该加强。</p>
-<p> $W_{ji} (t + 1 ) = W_{ji} (t) + η[ X_i(t) X_j(t) ]$</p>
+<p> $W<em>{ji} (t + 1 ) = W</em>{ji} (t) + η[ X_i(t) X_j(t) ]$</p>
 <p> 式中，$W_{ji} (t + 1 )$表示修正一次后的某一权值；η是一个正常量，决定每次权值修正量，又称为学习因子；$X_i(t)$ 、$X_j(t)$分别表示t时刻第i、第j个神经元状态。</p>
 </li>
 </ol>
@@ -1252,7 +1264,7 @@
 
 （3）更新权值：
     $W_{ji} (t + 1) = W_{ji} (t) + η[ d_j -y_j(t) ] x_i(t)$
-  式中，η为学习因子；$d_j$、$y_j$分别表示第j个神经元的期望输出与实际输出；`$x_i$`为第j个神经元的输入。
+  式中，η为学习因子；$d_j$、$y_j$分别表示第j个神经元的期望输出与实际输出；$$x_i$$为第j个神经元的输入。
 
 （4）返回步骤（2），直到对所有训练模式网络输出均能满足要求。
 </code></pre><h3 id="4-7-2-感知机模型"><a href="#4-7-2-感知机模型" class="headerlink" title="4.7.2 感知机模型"></a>4.7.2 感知机模型</h3><h4 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h4><ul>
@@ -1277,8 +1289,6 @@
 <h4 id="python实现简单BP"><a href="#python实现简单BP" class="headerlink" title="python实现简单BP"></a>python实现简单BP</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">def nonlin(x,derive=False):</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    实现sigmoid函数，deriv为Ture返回求导结果</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    if(derive==True):</span><br><span class="line">        return(x*(1-x))</span><br><span class="line">    return(1/(1+np.exp(-x)))</span><br><span class="line">    </span><br><span class="line">X=np.array([[0,0,1],[0,1,1],[1,0,1],[1,1,1]])</span><br><span class="line">y = np.array([[0,0,1,1]]).T</span><br><span class="line">np.random.seed(1)</span><br><span class="line">syn0=np.random.normal(size=(3,1))</span><br><span class="line"></span><br><span class="line">for iter in range(1000):</span><br><span class="line">    l0=X</span><br><span class="line">    l1=nonlin(np.dot(l0,syn0))</span><br><span class="line">    </span><br><span class="line">    l1_loss = y-l1 #损失函数</span><br><span class="line">    </span><br><span class="line">    l1_delta = l1_loss*nonlin(l1,True) </span><br><span class="line">    </span><br><span class="line">    syn0 += np.dot(l0.T,l1_delta)# 更新权值</span><br><span class="line">&apos;&apos;&apos;    </span><br><span class="line">l1=array([[0.03210593],</span><br><span class="line">       [0.02569687],</span><br><span class="line">       [0.97917487],</span><br><span class="line">       [0.97394839]])</span><br><span class="line">&apos;&apos;&apos;</span><br></pre></td></tr></table></figure>
 <h2 id="4-8-集成学习"><a href="#4-8-集成学习" class="headerlink" title="4.8 集成学习"></a>4.8 集成学习</h2><blockquote>
 <p><strong>集成学习</strong> (ensemble learning) 通过构建并结合多个学习器来完成学习任务。 集成学习的一般结构：先产生一组“个体学习器” (individual learner)，再用某种策略将它们结合。若集成中只包含同种类型的个体学习器，这样的集成是“同质的” (homogeneous)，同质集成中的个体学习器称为“基学习器” (base learner)，相应的学习算法称为“基学习算法” (base learning algorithm)。集成也可以包含不同类型的个体学习器，即“异质的” (heterogenous)。</p>
-</blockquote>
-<blockquote>
 <p>集成学习通过将多个学习器进行结合，通常可以获得比单一学习器显著优越的泛化性能。这对“弱学习器” (weak learner) 尤为明显。实际中，要获得好的集成，个体学习器通常应该“好二不同”，即个体学习器要有一定的“<strong>准确性</strong>”，并且要有“<strong>多样性</strong>”，即学习器间具有差异。</p>
 </blockquote>
 <h3 id="4-8-1-Bagging-随机森林就是其一个应用"><a href="#4-8-1-Bagging-随机森林就是其一个应用" class="headerlink" title="4.8.1 Bagging(随机森林就是其一个应用)"></a>4.8.1 Bagging(随机森林就是其一个应用)</h3><ul>
@@ -1292,7 +1302,8 @@
 <h3 id="4-8-3-Stacking"><a href="#4-8-3-Stacking" class="headerlink" title="4.8.3 Stacking"></a>4.8.3 Stacking</h3><ul>
 <li><strong>基本思想</strong>：Stacking先从初始数据集训练出初级学习器，然后生成一个新数据集用于训练次级学习器。在这个新数据集中，初级学习器的输出被当作样例输入特征，而初始样本的标记仍被当作样例标记</li>
 </ul>
-<h2 id="4-9-分类器的评价标准"><a href="#4-9-分类器的评价标准" class="headerlink" title="4.9 分类器的评价标准"></a>4.9 分类器的评价标准</h2><table>
+<h2 id="4-9-分类器的评价标准"><a href="#4-9-分类器的评价标准" class="headerlink" title="4.9 分类器的评价标准"></a>4.9 分类器的评价标准</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>A\Pr</th>
@@ -1322,6 +1333,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <pre><code>A : 实际的类
 
 Pr : 预测的类
@@ -1336,9 +1348,9 @@ FN：假负例，被错误分类的正样本
 
 P：正样本数；   N：负样本数
 
-P&apos;：被分类器标记为正的样本数
+P&#39;：被分类器标记为正的样本数
 
-N&apos;：被分类器标记为负的样本数
+N&#39;：被分类器标记为负的样本数
 </code></pre><ul>
 <li><p>准确度：$Accuracy=\frac{TP+TN}{ALL}$</p>
 </li>
@@ -1384,16 +1396,16 @@ N&apos;：被分类器标记为负的样本数
 <h5 id="K-means"><a href="#K-means" class="headerlink" title="K-means"></a>K-means</h5><ul>
 <li>目标：将数据集D划分为K个互不相容的簇，使得簇内对象互相相似，簇之间差异大</li>
 <li>聚类目标函数：簇对象到簇中心平方误差准则最小<ul>
-<li>$E=\sum_{i=1}^{k}\sum_{x\in C_i}{|x-x_i|}^2$</li>
+<li>$E=\sum<em>{i=1}^{k}\sum</em>{x\in C_i}{|x-x_i|}^2$</li>
 <li>$x_i$为第i个簇的均值，$C_i$代表第i个簇</li>
 </ul>
 </li>
 <li><p>简单实现过程</p>
-<pre><code>随机选择K个点作为初始质心  
-repeat  
-    将每个点指派到最近的质心，形成K个簇  
-    重新计算每个簇的质心  
-until 簇不发生变化或达到最大迭代次数 
+<pre><code>  随机选择K个点作为初始质心  
+  repeat  
+      将每个点指派到最近的质心，形成K个簇  
+      重新计算每个簇的质心  
+  until 簇不发生变化或达到最大迭代次数 
 </code></pre></li>
 <li>优点<ul>
 <li>经典算法、简单、快速</li>
@@ -1413,7 +1425,7 @@ until 簇不发生变化或达到最大迭代次数
 <h5 id="K—中心点（K-medoids）"><a href="#K—中心点（K-medoids）" class="headerlink" title="K—中心点（K-medoids）"></a>K—中心点（K-medoids）</h5><ul>
 <li>出发点：利用代表性的对象（中心点），而不是均值代表每个簇,又称PAM算法（Partitioning Around Medoids）</li>
 <li>基本思路<ol>
-<li>为每个簇随机选择一个代表对象(中心点)；<ol start="2">
+<li>为每个簇随机选择一个代表对象(中心点)；<ol>
 <li>剩余的对象根据其与代表对象的距离分配给与其最近的一个簇；</li>
 <li>反复地用非代表对象来替换代表对象，以提高聚类的质量，直至找到最合适的中心点。</li>
 </ol>
@@ -1487,6 +1499,7 @@ until 簇不发生变化或达到最大迭代次数
 4. ELSE 抽出的点是边缘点(非核心对象)，跳出本次循环，寻找下一点；
 5. UNTIL 所有点都被处理；
 </code></pre><p><strong>Eg:</strong><br>下面给出一个样本事务数据库（见左表），对它实施DBSCAN算法。<br>根据所给的数据通过对其进行DBSCAN算法，以下为算法的步骤（设n=12，用户输入ε=1，MinPts=4） 　</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1623,6 +1636,7 @@ until 簇不发生变化或达到最大迭代次数
 </tr>
 </tbody>
 </table>
+</div>
 <ol>
 <li>第1步，在数据库中选择一点1，由于在以它为圆心的，以1为半径的圆内包含2个点（小于4），因此它不是核心点，选择下一个点。</li>
 <li>第2步，在数据库中选择一点2，由于在以它为圆心的，以1为半径的圆内包含2个点，因此它不是核心点，选择下一个点。</li>
@@ -1740,8 +1754,8 @@ until 簇不发生变化或达到最大迭代次数
 </ul>
 <h3 id="Hadoop-Spark"><a href="#Hadoop-Spark" class="headerlink" title="Hadoop/Spark"></a>Hadoop/Spark</h3><h4 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h4><ul>
 <li>Hadoop is a software framework for <strong>distributed processing</strong> of <strong>large datasets</strong> across <strong>large clusters</strong> of computers<ul>
-<li>Large datasets —&gt;Terabytes or petabytes of data</li>
-<li>Large clusters —&gt; hundreds or thousands of nodes </li>
+<li>Large datasets —-&gt;Terabytes or petabytes of data</li>
+<li>Large clusters —-&gt; hundreds or thousands of nodes </li>
 </ul>
 </li>
 <li>Hadoop is based on a simple programming model called MapReduce</li>
@@ -1976,7 +1990,7 @@ until 簇不发生变化或达到最大迭代次数
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
